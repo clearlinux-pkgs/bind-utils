@@ -1,0 +1,3 @@
+--without-libxml2 ; libtoolize -c -f; aclocal -I libtool.m4 --force; autoconf -f ; %configure --disable-static
+--without-libxml2
+--with-libtool

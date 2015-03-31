@@ -1,0 +1,3 @@
+If you update the version of bind, you also need to rebuild the dhcp package;
+the dhcp package uses libraries from this package and upstream keeps changing
+ABI

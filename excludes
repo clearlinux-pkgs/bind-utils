@@ -1,0 +1,12 @@
+/usr/bin/bind9-config
+/usr/bin/delv
+/usr/bin/isc-config.sh
+/usr/bin/lwresd
+/usr/bin/named
+/usr/bin/named-checkconf
+/usr/bin/named-journalprint
+/usr/bin/named-rrchecker
+/usr/bin/rndc
+/usr/bin/rndc-confgen
+/usr/bin/tsig-keygen
+/etc/bind.keys
