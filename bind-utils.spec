@@ -4,7 +4,7 @@
 #
 Name     : bind-utils
 Version  : 9.10.3
-Release  : 28
+Release  : 29
 URL      : ftp://ftp.isc.org/isc/bind9/9.10.3-P4/bind-9.10.3-P4.tar.gz
 Source0  : ftp://ftp.isc.org/isc/bind9/9.10.3-P4/bind-9.10.3-P4.tar.gz
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
