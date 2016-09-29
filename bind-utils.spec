@@ -4,7 +4,7 @@
 #
 Name     : bind-utils
 Version  : 9.10.4
-Release  : 32
+Release  : 33
 URL      : ftp://ftp.isc.org/isc/bind9/9.10.4-P3/bind-9.10.4-P3.tar.gz
 Source0  : ftp://ftp.isc.org/isc/bind9/9.10.4-P3/bind-9.10.4-P3.tar.gz
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
@@ -33,6 +33,7 @@ Patch13: cve-2016-1286.nopatch
 Patch14: cve-2016-2088.nopatch
 Patch15: cve-2016-6170.nopatch
 Patch16: cve-2016-2775.nopatch
+Patch17: cve-2016-2776.nopatch
 
 %description
 idnkit is a kit for handling Internationalized Domain Name.
