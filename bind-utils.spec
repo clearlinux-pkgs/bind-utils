@@ -4,12 +4,12 @@
 #
 Name     : bind-utils
 Version  : 9.11.0
-Release  : 35
+Release  : 36
 URL      : ftp://ftp.isc.org/isc/bind9/9.11.0-P1/bind-9.11.0-P1.tar.gz
 Source0  : ftp://ftp.isc.org/isc/bind9/9.11.0-P1/bind-9.11.0-P1.tar.gz
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
 Group    : Development/Tools
-License  : BSD-3-Clause ISC
+License  : BSD-3-Clause ISC MPL-2.0-no-copyleft-exception
 Requires: bind-utils-bin
 Requires: bind-utils-lib
 Requires: bind-utils-doc
@@ -39,6 +39,7 @@ Patch14: cve-2016-2088.nopatch
 Patch15: cve-2016-6170.nopatch
 Patch16: cve-2016-2775.nopatch
 Patch17: cve-2016-2776.nopatch
+Patch18: cve-2016-8864.nopatch
 
 %description
 idnkit is a kit for handling Internationalized Domain Name.
