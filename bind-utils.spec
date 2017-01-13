@@ -4,9 +4,9 @@
 #
 Name     : bind-utils
 Version  : 9.11.0
-Release  : 36
-URL      : ftp://ftp.isc.org/isc/bind9/9.11.0-P1/bind-9.11.0-P1.tar.gz
-Source0  : ftp://ftp.isc.org/isc/bind9/9.11.0-P1/bind-9.11.0-P1.tar.gz
+Release  : 37
+URL      : ftp://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
+Source0  : ftp://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
 Group    : Development/Tools
 License  : BSD-3-Clause ISC MPL-2.0-no-copyleft-exception
@@ -80,7 +80,7 @@ lib components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.11.0-P1
+%setup -q -n bind-9.11.0-P2
 
 %build
 export LANG=C
