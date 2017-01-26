@@ -4,12 +4,13 @@
 #
 # Source0 file verified with key 0xF1B11BF05CF02E57 (codesign@isc.org)
 #
+%define keepstatic 1
 Name     : bind-utils
 Version  : 9.11.0
-Release  : 38
-URL      : ftp://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
-Source0  : ftp://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
-Source99 : ftp://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz.asc
+Release  : 40
+URL      : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
+Source0  : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
+Source99 : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz.asc
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
 Group    : Development/Tools
 License  : BSD-3-Clause ISC MPL-2.0-no-copyleft-exception
@@ -44,9 +45,6 @@ Patch15: cve-2016-6170.nopatch
 Patch16: cve-2016-2775.nopatch
 Patch17: cve-2016-2776.nopatch
 Patch18: cve-2016-8864.nopatch
-Patch19: cve-2016-9131.nopatch
-Patch20: cve-2016-9147.nopatch
-Patch21: cve-2016-9444.nopatch
 
 %description
 idnkit is a kit for handling Internationalized Domain Name.
@@ -91,13 +89,12 @@ lib components for the bind-utils package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1484337531
-%configure --disable-static --without-libxml2 ; libtoolize -c -f; aclocal -I libtool.m4 --force; autoconf -f ; %configure --disable-static \
---without-libxml2 \
---with-libtool
+export SOURCE_DATE_EPOCH=1485457106
+%configure  --without-libxml2 ; libtoolize -c -f; aclocal -I libtool.m4 --force; autoconf -f ; %configure --without-libxml2 --with-libtool
 make V=1  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1485457106
 rm -rf %{buildroot}
 %make_install
 
@@ -395,6 +392,7 @@ rm -rf %{buildroot}
 /usr/include/pkcs11/pkcs11.h
 /usr/include/pkcs11/pkcs11f.h
 /usr/include/pkcs11/pkcs11t.h
+/usr/lib64/*.a
 /usr/lib64/libbind9.so
 /usr/lib64/libdns.so
 /usr/lib64/libirs.so
