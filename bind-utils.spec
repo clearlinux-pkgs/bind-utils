@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.11.0
-Release  : 40
+Release  : 41
 URL      : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
 Source0  : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
 Source99 : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz.asc
