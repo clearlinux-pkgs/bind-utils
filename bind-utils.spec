@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.11.0
-Release  : 42
+Release  : 43
 URL      : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
 Source0  : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz
 Source99 : https://ftp.isc.org/isc/bind9/9.11.0-P2/bind-9.11.0-P2.tar.gz.asc
@@ -45,6 +45,9 @@ Patch15: cve-2016-6170.nopatch
 Patch16: cve-2016-2775.nopatch
 Patch17: cve-2016-2776.nopatch
 Patch18: cve-2016-8864.nopatch
+Patch19: cve-2016-9131.nopatch
+Patch20: cve-2016-9147.nopatch
+Patch21: cve-2016-9444.nopatch
 
 %description
 idnkit is a kit for handling Internationalized Domain Name.
@@ -89,12 +92,12 @@ lib components for the bind-utils package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1485457106
+export SOURCE_DATE_EPOCH=1486663368
 %configure  --without-libxml2 ; libtoolize -c -f; aclocal -I libtool.m4 --force; autoconf -f ; %configure --without-libxml2 --with-libtool
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1485457106
+export SOURCE_DATE_EPOCH=1486663368
 rm -rf %{buildroot}
 %make_install
 
