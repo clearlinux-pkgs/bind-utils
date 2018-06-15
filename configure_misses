@@ -1,0 +1,145 @@
+Configure miss: emacs-etags
+Configure miss: python module 'ply'
+Configure miss: python module 'ply'
+Configure miss: python3.5
+Configure miss: python3.4
+Configure miss: python3.3
+Configure miss: python3.2
+Configure miss: python3.1
+Configure miss: python3.0
+Configure miss: python module 'ply'
+Configure miss: python module 'ply'
+Configure miss: python2.6
+Configure miss: python2.5
+Configure miss: python2.4
+Configure miss: net/if6.h
+Configure miss: sysctlbyname
+Configure miss: static inline breakage
+Configure miss: struct lifconf
+Configure miss: sys/devpoll.h usability
+Configure miss: sys/devpoll.h presence
+Configure miss: sys/devpoll.h
+Configure miss: devpoll.h usability
+Configure miss: devpoll.h presence
+Configure miss: devpoll.h
+Configure miss: arc4random
+Configure miss: arc4random_addrandom
+Configure miss: pthread_yield_np
+Configure miss: libtool
+Configure miss: whether linking with OpenSSL requires -ldl
+Configure miss: using OpenSSL for hash functions
+Configure miss: PKCS11 support
+Configure miss: lmdb library
+Configure miss: libxml2 library
+Configure miss: json library
+Configure miss: zlib library
+Configure miss: smf_enable_instance in -lscf
+Configure miss: whether to use purify
+Configure miss: whether to use gperftools profiler
+Configure miss: Kame IPv6 support
+Configure miss: struct if_laddrreq
+Configure miss: struct if_laddrconf
+Configure miss: sa_len in struct sockaddr
+Configure miss: struct rrsetinfo
+Configure miss: int sethostent
+Configure miss: int endhostent
+Configure miss: int setnetent
+Configure miss: int endnetent
+Configure miss: gethostbyaddr(const void *, size_t, ...)
+Configure miss: getnameinfo prototype definitions
+Configure miss: gai_strerror prototype definitions
+Configure miss: getipnodebyname
+Configure miss: interface list sysctl
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: fstrm_capture
+Configure miss: dblatex
+Configure miss: w3m
+Configure miss: whether to enable query trace logging
+Configure miss: Postgres DLZ driver
+Configure miss: MySQL DLZ driver
+Configure miss: Berkeley DB DLZ driver...
+Configure miss: file system DLZ driver
+Configure miss: LDAP DLZ driver
+Configure miss: ODBC DLZ driver
+Configure miss: stub DLZ driver
+Configure miss: contributed DLZ drivers
+Configure miss: emacs-etags
+Configure miss: python module 'ply'
+Configure miss: python module 'ply'
+Configure miss: python3.5
+Configure miss: python3.4
+Configure miss: python3.3
+Configure miss: python3.2
+Configure miss: python3.1
+Configure miss: python3.0
+Configure miss: python module 'ply'
+Configure miss: python module 'ply'
+Configure miss: python2.6
+Configure miss: python2.5
+Configure miss: python2.4
+Configure miss: net/if6.h
+Configure miss: sysctlbyname
+Configure miss: static inline breakage
+Configure miss: struct lifconf
+Configure miss: sys/devpoll.h usability
+Configure miss: sys/devpoll.h presence
+Configure miss: sys/devpoll.h
+Configure miss: devpoll.h usability
+Configure miss: devpoll.h presence
+Configure miss: devpoll.h
+Configure miss: arc4random
+Configure miss: arc4random_addrandom
+Configure miss: pthread_yield_np
+Configure miss: whether linking with OpenSSL requires -ldl
+Configure miss: using OpenSSL for hash functions
+Configure miss: PKCS11 support
+Configure miss: lmdb library
+Configure miss: libxml2 library
+Configure miss: json library
+Configure miss: zlib library
+Configure miss: smf_enable_instance in -lscf
+Configure miss: whether to use purify
+Configure miss: whether to use gperftools profiler
+Configure miss: Kame IPv6 support
+Configure miss: struct if_laddrreq
+Configure miss: struct if_laddrconf
+Configure miss: sa_len in struct sockaddr
+Configure miss: struct rrsetinfo
+Configure miss: int sethostent
+Configure miss: int endhostent
+Configure miss: int setnetent
+Configure miss: int endnetent
+Configure miss: gethostbyaddr(const void *, size_t, ...)
+Configure miss: getnameinfo prototype definitions
+Configure miss: gai_strerror prototype definitions
+Configure miss: getipnodebyname
+Configure miss: interface list sysctl
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: fstrm_capture
+Configure miss: dblatex
+Configure miss: w3m
+Configure miss: whether to enable query trace logging
+Configure miss: Postgres DLZ driver
+Configure miss: MySQL DLZ driver
+Configure miss: Berkeley DB DLZ driver...
+Configure miss: file system DLZ driver
+Configure miss: LDAP DLZ driver
+Configure miss: ODBC DLZ driver
+Configure miss: stub DLZ driver
+Configure miss: contributed DLZ drivers

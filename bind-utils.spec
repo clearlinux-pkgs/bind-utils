@@ -6,24 +6,24 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.11.0.5
-Release  : 50
+Version  : 9.11.0.p5
+Release  : 51
 URL      : https://ftp.isc.org/isc/bind9/9.11.0-P5/bind-9.11.0-P5.tar.gz
 Source0  : https://ftp.isc.org/isc/bind9/9.11.0-P5/bind-9.11.0-P5.tar.gz
 Source99 : https://ftp.isc.org/isc/bind9/9.11.0-P5/bind-9.11.0-P5.tar.gz.asc
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
 Group    : Development/Tools
-License  : BSD-3-Clause ISC MPL-2.0-no-copyleft-exception
+License  : BSD-3-Clause ISC MPL-2.0 MPL-2.0-no-copyleft-exception
 Requires: bind-utils-bin
 Requires: bind-utils-lib
-Requires: bind-utils-doc
+Requires: bind-utils-license
+Requires: bind-utils-man
 BuildRequires : libcap-dev
 BuildRequires : libxml2-dev
 BuildRequires : openssl-dev
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python
-
 BuildRequires : python3-dev
 BuildRequires : readline-dev
 BuildRequires : setuptools
@@ -52,6 +52,8 @@ idnkit is a kit for handling Internationalized Domain Name.
 %package bin
 Summary: bin components for the bind-utils package.
 Group: Binaries
+Requires: bind-utils-license
+Requires: bind-utils-man
 
 %description bin
 bin components for the bind-utils package.
@@ -68,34 +70,57 @@ Provides: bind-utils-devel
 dev components for the bind-utils package.
 
 
-%package doc
-Summary: doc components for the bind-utils package.
-Group: Documentation
-
-%description doc
-doc components for the bind-utils package.
-
-
 %package lib
 Summary: lib components for the bind-utils package.
 Group: Libraries
+Requires: bind-utils-license
 
 %description lib
 lib components for the bind-utils package.
+
+
+%package license
+Summary: license components for the bind-utils package.
+Group: Default
+
+%description license
+license components for the bind-utils package.
+
+
+%package man
+Summary: man components for the bind-utils package.
+Group: Default
+
+%description man
+man components for the bind-utils package.
 
 
 %prep
 %setup -q -n bind-9.11.0-P5
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1492098295
+export SOURCE_DATE_EPOCH=1529093057
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure  --without-libxml2 ; libtoolize -c -f; aclocal -I libtool.m4 --force; autoconf -f ; %configure --without-libxml2 --with-libtool
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1492098295
+export SOURCE_DATE_EPOCH=1529093057
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/bind-utils
+cp LICENSE %{buildroot}/usr/share/doc/bind-utils/LICENSE
+cp COPYRIGHT %{buildroot}/usr/share/doc/bind-utils/COPYRIGHT
+cp unit/atf-src/COPYING %{buildroot}/usr/share/doc/bind-utils/unit_atf-src_COPYING
+cp contrib/zkt-1.1.3/LICENSE %{buildroot}/usr/share/doc/bind-utils/contrib_zkt-1.1.3_LICENSE
+cp contrib/idn/idnkit-1.0-src/LICENSE.txt %{buildroot}/usr/share/doc/bind-utils/contrib_idn_idnkit-1.0-src_LICENSE.txt
+cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/bin_tests_system_dyndb_driver_COPYING
 %make_install
 
 %files
@@ -401,13 +426,6 @@ rm -rf %{buildroot}
 /usr/lib64/libisccfg.so
 /usr/lib64/liblwres.so
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
-%doc /usr/share/man/man5/*
-%doc /usr/share/man/man8/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libbind9.so.160
@@ -424,3 +442,133 @@ rm -rf %{buildroot}
 /usr/lib64/libisccfg.so.160.0.5
 /usr/lib64/liblwres.so.160
 /usr/lib64/liblwres.so.160.0.0
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/bind-utils/COPYRIGHT
+/usr/share/doc/bind-utils/LICENSE
+/usr/share/doc/bind-utils/bin_tests_system_dyndb_driver_COPYING
+/usr/share/doc/bind-utils/contrib_idn_idnkit-1.0-src_LICENSE.txt
+/usr/share/doc/bind-utils/contrib_zkt-1.1.3_LICENSE
+/usr/share/doc/bind-utils/unit_atf-src_COPYING
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/arpaname.1
+/usr/share/man/man1/bind9-config.1
+/usr/share/man/man1/delv.1
+/usr/share/man/man1/dig.1
+/usr/share/man/man1/host.1
+/usr/share/man/man1/isc-config.sh.1
+/usr/share/man/man1/mdig.1
+/usr/share/man/man1/named-rrchecker.1
+/usr/share/man/man1/nslookup.1
+/usr/share/man/man1/nsupdate.1
+/usr/share/man/man3/lwres.3
+/usr/share/man/man3/lwres_addr_parse.3
+/usr/share/man/man3/lwres_buffer.3
+/usr/share/man/man3/lwres_buffer_add.3
+/usr/share/man/man3/lwres_buffer_back.3
+/usr/share/man/man3/lwres_buffer_clear.3
+/usr/share/man/man3/lwres_buffer_first.3
+/usr/share/man/man3/lwres_buffer_forward.3
+/usr/share/man/man3/lwres_buffer_getmem.3
+/usr/share/man/man3/lwres_buffer_getuint16.3
+/usr/share/man/man3/lwres_buffer_getuint32.3
+/usr/share/man/man3/lwres_buffer_getuint8.3
+/usr/share/man/man3/lwres_buffer_init.3
+/usr/share/man/man3/lwres_buffer_invalidate.3
+/usr/share/man/man3/lwres_buffer_putmem.3
+/usr/share/man/man3/lwres_buffer_putuint16.3
+/usr/share/man/man3/lwres_buffer_putuint32.3
+/usr/share/man/man3/lwres_buffer_putuint8.3
+/usr/share/man/man3/lwres_buffer_subtract.3
+/usr/share/man/man3/lwres_conf_clear.3
+/usr/share/man/man3/lwres_conf_get.3
+/usr/share/man/man3/lwres_conf_init.3
+/usr/share/man/man3/lwres_conf_parse.3
+/usr/share/man/man3/lwres_conf_print.3
+/usr/share/man/man3/lwres_config.3
+/usr/share/man/man3/lwres_context.3
+/usr/share/man/man3/lwres_context_allocmem.3
+/usr/share/man/man3/lwres_context_create.3
+/usr/share/man/man3/lwres_context_destroy.3
+/usr/share/man/man3/lwres_context_freemem.3
+/usr/share/man/man3/lwres_context_initserial.3
+/usr/share/man/man3/lwres_context_nextserial.3
+/usr/share/man/man3/lwres_context_sendrecv.3
+/usr/share/man/man3/lwres_endhostent.3
+/usr/share/man/man3/lwres_endhostent_r.3
+/usr/share/man/man3/lwres_freeaddrinfo.3
+/usr/share/man/man3/lwres_freehostent.3
+/usr/share/man/man3/lwres_gabn.3
+/usr/share/man/man3/lwres_gabnrequest_free.3
+/usr/share/man/man3/lwres_gabnrequest_parse.3
+/usr/share/man/man3/lwres_gabnrequest_render.3
+/usr/share/man/man3/lwres_gabnresponse_free.3
+/usr/share/man/man3/lwres_gabnresponse_parse.3
+/usr/share/man/man3/lwres_gabnresponse_render.3
+/usr/share/man/man3/lwres_gai_strerror.3
+/usr/share/man/man3/lwres_getaddrinfo.3
+/usr/share/man/man3/lwres_getaddrsbyname.3
+/usr/share/man/man3/lwres_gethostbyaddr.3
+/usr/share/man/man3/lwres_gethostbyaddr_r.3
+/usr/share/man/man3/lwres_gethostbyname.3
+/usr/share/man/man3/lwres_gethostbyname2.3
+/usr/share/man/man3/lwres_gethostbyname_r.3
+/usr/share/man/man3/lwres_gethostent.3
+/usr/share/man/man3/lwres_gethostent_r.3
+/usr/share/man/man3/lwres_getipnode.3
+/usr/share/man/man3/lwres_getipnodebyaddr.3
+/usr/share/man/man3/lwres_getipnodebyname.3
+/usr/share/man/man3/lwres_getnamebyaddr.3
+/usr/share/man/man3/lwres_getnameinfo.3
+/usr/share/man/man3/lwres_getrrsetbyname.3
+/usr/share/man/man3/lwres_gnba.3
+/usr/share/man/man3/lwres_gnbarequest_free.3
+/usr/share/man/man3/lwres_gnbarequest_parse.3
+/usr/share/man/man3/lwres_gnbarequest_render.3
+/usr/share/man/man3/lwres_gnbaresponse_free.3
+/usr/share/man/man3/lwres_gnbaresponse_parse.3
+/usr/share/man/man3/lwres_gnbaresponse_render.3
+/usr/share/man/man3/lwres_herror.3
+/usr/share/man/man3/lwres_hstrerror.3
+/usr/share/man/man3/lwres_inetntop.3
+/usr/share/man/man3/lwres_lwpacket_parseheader.3
+/usr/share/man/man3/lwres_lwpacket_renderheader.3
+/usr/share/man/man3/lwres_net_ntop.3
+/usr/share/man/man3/lwres_noop.3
+/usr/share/man/man3/lwres_nooprequest_free.3
+/usr/share/man/man3/lwres_nooprequest_parse.3
+/usr/share/man/man3/lwres_nooprequest_render.3
+/usr/share/man/man3/lwres_noopresponse_free.3
+/usr/share/man/man3/lwres_noopresponse_parse.3
+/usr/share/man/man3/lwres_noopresponse_render.3
+/usr/share/man/man3/lwres_packet.3
+/usr/share/man/man3/lwres_resutil.3
+/usr/share/man/man3/lwres_sethostent.3
+/usr/share/man/man3/lwres_sethostent_r.3
+/usr/share/man/man3/lwres_string_parse.3
+/usr/share/man/man5/named.conf.5
+/usr/share/man/man5/rndc.conf.5
+/usr/share/man/man8/ddns-confgen.8
+/usr/share/man/man8/dnssec-dsfromkey.8
+/usr/share/man/man8/dnssec-importkey.8
+/usr/share/man/man8/dnssec-keyfromlabel.8
+/usr/share/man/man8/dnssec-keygen.8
+/usr/share/man/man8/dnssec-revoke.8
+/usr/share/man/man8/dnssec-settime.8
+/usr/share/man/man8/dnssec-signzone.8
+/usr/share/man/man8/dnssec-verify.8
+/usr/share/man/man8/genrandom.8
+/usr/share/man/man8/isc-hmac-fixup.8
+/usr/share/man/man8/lwresd.8
+/usr/share/man/man8/named-checkconf.8
+/usr/share/man/man8/named-checkzone.8
+/usr/share/man/man8/named-compilezone.8
+/usr/share/man/man8/named-journalprint.8
+/usr/share/man/man8/named.8
+/usr/share/man/man8/nsec3hash.8
+/usr/share/man/man8/rndc-confgen.8
+/usr/share/man/man8/rndc.8
+/usr/share/man/man8/tsig-keygen.8
