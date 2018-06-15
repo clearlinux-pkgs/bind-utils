@@ -23,7 +23,7 @@ BuildRequires : openssl-dev
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : readline-dev
 BuildRequires : setuptools
