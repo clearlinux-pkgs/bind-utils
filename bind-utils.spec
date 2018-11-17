@@ -6,27 +6,25 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.11.0.p5
-Release  : 51
-URL      : https://ftp.isc.org/isc/bind9/9.11.0-P5/bind-9.11.0-P5.tar.gz
-Source0  : https://ftp.isc.org/isc/bind9/9.11.0-P5/bind-9.11.0-P5.tar.gz
-Source99 : https://ftp.isc.org/isc/bind9/9.11.0-P5/bind-9.11.0-P5.tar.gz.asc
+Version  : 9.12.3
+Release  : 52
+URL      : https://ftp.isc.org/isc/bind9/9.12.3/bind-9.12.3.tar.gz
+Source0  : https://ftp.isc.org/isc/bind9/9.12.3/bind-9.12.3.tar.gz
+Source99 : https://ftp.isc.org/isc/bind9/9.12.3/bind-9.12.3.tar.gz.asc
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
 Group    : Development/Tools
-License  : BSD-3-Clause ISC MPL-2.0 MPL-2.0-no-copyleft-exception
-Requires: bind-utils-bin
-Requires: bind-utils-lib
-Requires: bind-utils-license
-Requires: bind-utils-man
+License  : BSD-2-Clause BSD-3-Clause ISC MPL-2.0-no-copyleft-exception
+Requires: bind-utils-bin = %{version}-%{release}
+Requires: bind-utils-lib = %{version}-%{release}
+Requires: bind-utils-license = %{version}-%{release}
+Requires: bind-utils-man = %{version}-%{release}
+BuildRequires : buildreq-distutils3
 BuildRequires : libcap-dev
 BuildRequires : libxml2-dev
 BuildRequires : openssl-dev
-BuildRequires : pbr
-BuildRequires : pip
-BuildRequires : python
-BuildRequires : python3-dev
+BuildRequires : perl
+BuildRequires : python-core
 BuildRequires : readline-dev
-BuildRequires : setuptools
 Patch1: cve-2010-0290.nopatch
 Patch2: cve-2010-0382.nopatch
 Patch3: cve-2015-1349.nopatch
@@ -52,8 +50,8 @@ idnkit is a kit for handling Internationalized Domain Name.
 %package bin
 Summary: bin components for the bind-utils package.
 Group: Binaries
-Requires: bind-utils-license
-Requires: bind-utils-man
+Requires: bind-utils-license = %{version}-%{release}
+Requires: bind-utils-man = %{version}-%{release}
 
 %description bin
 bin components for the bind-utils package.
@@ -62,9 +60,9 @@ bin components for the bind-utils package.
 %package dev
 Summary: dev components for the bind-utils package.
 Group: Development
-Requires: bind-utils-lib
-Requires: bind-utils-bin
-Provides: bind-utils-devel
+Requires: bind-utils-lib = %{version}-%{release}
+Requires: bind-utils-bin = %{version}-%{release}
+Provides: bind-utils-devel = %{version}-%{release}
 
 %description dev
 dev components for the bind-utils package.
@@ -73,7 +71,7 @@ dev components for the bind-utils package.
 %package lib
 Summary: lib components for the bind-utils package.
 Group: Libraries
-Requires: bind-utils-license
+Requires: bind-utils-license = %{version}-%{release}
 
 %description lib
 lib components for the bind-utils package.
@@ -96,14 +94,14 @@ man components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.11.0-P5
+%setup -q -n bind-9.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1529093057
+export SOURCE_DATE_EPOCH=1542486597
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -112,15 +110,14 @@ export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=use
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1529093057
+export SOURCE_DATE_EPOCH=1542486597
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/bind-utils
-cp LICENSE %{buildroot}/usr/share/doc/bind-utils/LICENSE
-cp COPYRIGHT %{buildroot}/usr/share/doc/bind-utils/COPYRIGHT
-cp unit/atf-src/COPYING %{buildroot}/usr/share/doc/bind-utils/unit_atf-src_COPYING
-cp contrib/zkt-1.1.3/LICENSE %{buildroot}/usr/share/doc/bind-utils/contrib_zkt-1.1.3_LICENSE
-cp contrib/idn/idnkit-1.0-src/LICENSE.txt %{buildroot}/usr/share/doc/bind-utils/contrib_idn_idnkit-1.0-src_LICENSE.txt
-cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/bin_tests_system_dyndb_driver_COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
+cp COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/COPYRIGHT
+cp LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/LICENSE
+cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/bin_tests_system_dyndb_driver_COPYING
+cp contrib/idn/idnkit-1.0-src/LICENSE.txt %{buildroot}/usr/share/package-licenses/bind-utils/contrib_idn_idnkit-1.0-src_LICENSE.txt
+cp unit/atf-src/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/unit_atf-src_COPYING
 %make_install
 
 %files
@@ -131,7 +128,6 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 %exclude /usr/bin/bind9-config
 %exclude /usr/bin/delv
 %exclude /usr/bin/isc-config.sh
-%exclude /usr/bin/lwresd
 %exclude /usr/bin/named
 %exclude /usr/bin/named-checkconf
 %exclude /usr/bin/named-journalprint
@@ -142,6 +138,7 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/bin/arpaname
 /usr/bin/ddns-confgen
 /usr/bin/dig
+/usr/bin/dnssec-cds
 /usr/bin/dnssec-dsfromkey
 /usr/bin/dnssec-importkey
 /usr/bin/dnssec-keyfromlabel
@@ -152,7 +149,6 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/bin/dnssec-verify
 /usr/bin/genrandom
 /usr/bin/host
-/usr/bin/isc-hmac-fixup
 /usr/bin/mdig
 /usr/bin/named-checkzone
 /usr/bin/named-compilezone
@@ -165,7 +161,6 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/include/bind9/check.h
 /usr/include/bind9/getaddresses.h
 /usr/include/bind9/version.h
-/usr/include/dns/acache.h
 /usr/include/dns/acl.h
 /usr/include/dns/adb.h
 /usr/include/dns/badcache.h
@@ -186,12 +181,14 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/include/dns/dlz.h
 /usr/include/dns/dlz_dlopen.h
 /usr/include/dns/dns64.h
+/usr/include/dns/dnsrps.h
 /usr/include/dns/dnssec.h
 /usr/include/dns/dnstap.h
 /usr/include/dns/ds.h
 /usr/include/dns/dsdigest.h
 /usr/include/dns/dyndb.h
 /usr/include/dns/ecdb.h
+/usr/include/dns/ecs.h
 /usr/include/dns/edns.h
 /usr/include/dns/enumclass.h
 /usr/include/dns/enumtype.h
@@ -207,6 +204,7 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/include/dns/keytable.h
 /usr/include/dns/keyvalues.h
 /usr/include/dns/lib.h
+/usr/include/dns/librpz.h
 /usr/include/dns/log.h
 /usr/include/dns/lookup.h
 /usr/include/dns/master.h
@@ -288,6 +286,7 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/include/isc/condition.h
 /usr/include/isc/counter.h
 /usr/include/isc/crc64.h
+/usr/include/isc/deprecated.h
 /usr/include/isc/dir.h
 /usr/include/isc/entropy.h
 /usr/include/isc/errno.h
@@ -297,6 +296,7 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/include/isc/file.h
 /usr/include/isc/formatcheck.h
 /usr/include/isc/fsaccess.h
+/usr/include/isc/fuzz.h
 /usr/include/isc/hash.h
 /usr/include/isc/heap.h
 /usr/include/isc/hex.h
@@ -313,6 +313,7 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/include/isc/lex.h
 /usr/include/isc/lfsr.h
 /usr/include/isc/lib.h
+/usr/include/isc/likely.h
 /usr/include/isc/list.h
 /usr/include/isc/log.h
 /usr/include/isc/magic.h
@@ -393,27 +394,27 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/include/isccfg/log.h
 /usr/include/isccfg/namedconf.h
 /usr/include/isccfg/version.h
-/usr/include/lwres/context.h
-/usr/include/lwres/int.h
-/usr/include/lwres/ipv6.h
-/usr/include/lwres/lang.h
-/usr/include/lwres/list.h
-/usr/include/lwres/lwbuffer.h
-/usr/include/lwres/lwpacket.h
-/usr/include/lwres/lwres.h
-/usr/include/lwres/net.h
-/usr/include/lwres/netdb.h
-/usr/include/lwres/platform.h
-/usr/include/lwres/result.h
-/usr/include/lwres/stdlib.h
-/usr/include/lwres/string.h
-/usr/include/lwres/version.h
+/usr/include/ns/client.h
+/usr/include/ns/interfacemgr.h
+/usr/include/ns/lib.h
+/usr/include/ns/listenlist.h
+/usr/include/ns/log.h
+/usr/include/ns/notify.h
+/usr/include/ns/query.h
+/usr/include/ns/server.h
+/usr/include/ns/sortlist.h
+/usr/include/ns/stats.h
+/usr/include/ns/types.h
+/usr/include/ns/update.h
+/usr/include/ns/version.h
+/usr/include/ns/xfrout.h
 /usr/include/pk11/constants.h
 /usr/include/pk11/internal.h
 /usr/include/pk11/pk11.h
 /usr/include/pk11/result.h
 /usr/include/pk11/site.h
 /usr/include/pkcs11/cryptoki.h
+/usr/include/pkcs11/eddsa.h
 /usr/include/pkcs11/pkcs11.h
 /usr/include/pkcs11/pkcs11f.h
 /usr/include/pkcs11/pkcs11t.h
@@ -424,36 +425,35 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/lib64/libisc.so
 /usr/lib64/libisccc.so
 /usr/lib64/libisccfg.so
-/usr/lib64/liblwres.so
+/usr/lib64/libns.so
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libbind9.so.160
-/usr/lib64/libbind9.so.160.0.2
-/usr/lib64/libdns.so.166
-/usr/lib64/libdns.so.166.0.7
-/usr/lib64/libirs.so.160
-/usr/lib64/libirs.so.160.0.1
-/usr/lib64/libisc.so.160
-/usr/lib64/libisc.so.160.5.2
-/usr/lib64/libisccc.so.160
-/usr/lib64/libisccc.so.160.0.2
-/usr/lib64/libisccfg.so.160
-/usr/lib64/libisccfg.so.160.0.5
-/usr/lib64/liblwres.so.160
-/usr/lib64/liblwres.so.160.0.0
+/usr/lib64/libbind9.so.1201
+/usr/lib64/libbind9.so.1201.0.0
+/usr/lib64/libdns.so.1207
+/usr/lib64/libdns.so.1207.0.0
+/usr/lib64/libirs.so.1201
+/usr/lib64/libirs.so.1201.0.0
+/usr/lib64/libisc.so.1204
+/usr/lib64/libisc.so.1204.0.0
+/usr/lib64/libisccc.so.1201
+/usr/lib64/libisccc.so.1201.0.0
+/usr/lib64/libisccfg.so.1203
+/usr/lib64/libisccfg.so.1203.0.0
+/usr/lib64/libns.so.1205
+/usr/lib64/libns.so.1205.0.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/bind-utils/COPYRIGHT
-/usr/share/doc/bind-utils/LICENSE
-/usr/share/doc/bind-utils/bin_tests_system_dyndb_driver_COPYING
-/usr/share/doc/bind-utils/contrib_idn_idnkit-1.0-src_LICENSE.txt
-/usr/share/doc/bind-utils/contrib_zkt-1.1.3_LICENSE
-/usr/share/doc/bind-utils/unit_atf-src_COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/bind-utils/COPYRIGHT
+/usr/share/package-licenses/bind-utils/LICENSE
+/usr/share/package-licenses/bind-utils/bin_tests_system_dyndb_driver_COPYING
+/usr/share/package-licenses/bind-utils/contrib_idn_idnkit-1.0-src_LICENSE.txt
+/usr/share/package-licenses/bind-utils/unit_atf-src_COPYING
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/arpaname.1
 /usr/share/man/man1/bind9-config.1
 /usr/share/man/man1/delv.1
@@ -464,94 +464,10 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/share/man/man1/named-rrchecker.1
 /usr/share/man/man1/nslookup.1
 /usr/share/man/man1/nsupdate.1
-/usr/share/man/man3/lwres.3
-/usr/share/man/man3/lwres_addr_parse.3
-/usr/share/man/man3/lwres_buffer.3
-/usr/share/man/man3/lwres_buffer_add.3
-/usr/share/man/man3/lwres_buffer_back.3
-/usr/share/man/man3/lwres_buffer_clear.3
-/usr/share/man/man3/lwres_buffer_first.3
-/usr/share/man/man3/lwres_buffer_forward.3
-/usr/share/man/man3/lwres_buffer_getmem.3
-/usr/share/man/man3/lwres_buffer_getuint16.3
-/usr/share/man/man3/lwres_buffer_getuint32.3
-/usr/share/man/man3/lwres_buffer_getuint8.3
-/usr/share/man/man3/lwres_buffer_init.3
-/usr/share/man/man3/lwres_buffer_invalidate.3
-/usr/share/man/man3/lwres_buffer_putmem.3
-/usr/share/man/man3/lwres_buffer_putuint16.3
-/usr/share/man/man3/lwres_buffer_putuint32.3
-/usr/share/man/man3/lwres_buffer_putuint8.3
-/usr/share/man/man3/lwres_buffer_subtract.3
-/usr/share/man/man3/lwres_conf_clear.3
-/usr/share/man/man3/lwres_conf_get.3
-/usr/share/man/man3/lwres_conf_init.3
-/usr/share/man/man3/lwres_conf_parse.3
-/usr/share/man/man3/lwres_conf_print.3
-/usr/share/man/man3/lwres_config.3
-/usr/share/man/man3/lwres_context.3
-/usr/share/man/man3/lwres_context_allocmem.3
-/usr/share/man/man3/lwres_context_create.3
-/usr/share/man/man3/lwres_context_destroy.3
-/usr/share/man/man3/lwres_context_freemem.3
-/usr/share/man/man3/lwres_context_initserial.3
-/usr/share/man/man3/lwres_context_nextserial.3
-/usr/share/man/man3/lwres_context_sendrecv.3
-/usr/share/man/man3/lwres_endhostent.3
-/usr/share/man/man3/lwres_endhostent_r.3
-/usr/share/man/man3/lwres_freeaddrinfo.3
-/usr/share/man/man3/lwres_freehostent.3
-/usr/share/man/man3/lwres_gabn.3
-/usr/share/man/man3/lwres_gabnrequest_free.3
-/usr/share/man/man3/lwres_gabnrequest_parse.3
-/usr/share/man/man3/lwres_gabnrequest_render.3
-/usr/share/man/man3/lwres_gabnresponse_free.3
-/usr/share/man/man3/lwres_gabnresponse_parse.3
-/usr/share/man/man3/lwres_gabnresponse_render.3
-/usr/share/man/man3/lwres_gai_strerror.3
-/usr/share/man/man3/lwres_getaddrinfo.3
-/usr/share/man/man3/lwres_getaddrsbyname.3
-/usr/share/man/man3/lwres_gethostbyaddr.3
-/usr/share/man/man3/lwres_gethostbyaddr_r.3
-/usr/share/man/man3/lwres_gethostbyname.3
-/usr/share/man/man3/lwres_gethostbyname2.3
-/usr/share/man/man3/lwres_gethostbyname_r.3
-/usr/share/man/man3/lwres_gethostent.3
-/usr/share/man/man3/lwres_gethostent_r.3
-/usr/share/man/man3/lwres_getipnode.3
-/usr/share/man/man3/lwres_getipnodebyaddr.3
-/usr/share/man/man3/lwres_getipnodebyname.3
-/usr/share/man/man3/lwres_getnamebyaddr.3
-/usr/share/man/man3/lwres_getnameinfo.3
-/usr/share/man/man3/lwres_getrrsetbyname.3
-/usr/share/man/man3/lwres_gnba.3
-/usr/share/man/man3/lwres_gnbarequest_free.3
-/usr/share/man/man3/lwres_gnbarequest_parse.3
-/usr/share/man/man3/lwres_gnbarequest_render.3
-/usr/share/man/man3/lwres_gnbaresponse_free.3
-/usr/share/man/man3/lwres_gnbaresponse_parse.3
-/usr/share/man/man3/lwres_gnbaresponse_render.3
-/usr/share/man/man3/lwres_herror.3
-/usr/share/man/man3/lwres_hstrerror.3
-/usr/share/man/man3/lwres_inetntop.3
-/usr/share/man/man3/lwres_lwpacket_parseheader.3
-/usr/share/man/man3/lwres_lwpacket_renderheader.3
-/usr/share/man/man3/lwres_net_ntop.3
-/usr/share/man/man3/lwres_noop.3
-/usr/share/man/man3/lwres_nooprequest_free.3
-/usr/share/man/man3/lwres_nooprequest_parse.3
-/usr/share/man/man3/lwres_nooprequest_render.3
-/usr/share/man/man3/lwres_noopresponse_free.3
-/usr/share/man/man3/lwres_noopresponse_parse.3
-/usr/share/man/man3/lwres_noopresponse_render.3
-/usr/share/man/man3/lwres_packet.3
-/usr/share/man/man3/lwres_resutil.3
-/usr/share/man/man3/lwres_sethostent.3
-/usr/share/man/man3/lwres_sethostent_r.3
-/usr/share/man/man3/lwres_string_parse.3
 /usr/share/man/man5/named.conf.5
 /usr/share/man/man5/rndc.conf.5
 /usr/share/man/man8/ddns-confgen.8
+/usr/share/man/man8/dnssec-cds.8
 /usr/share/man/man8/dnssec-dsfromkey.8
 /usr/share/man/man8/dnssec-importkey.8
 /usr/share/man/man8/dnssec-keyfromlabel.8
@@ -561,8 +477,6 @@ cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/doc/bind-utils/b
 /usr/share/man/man8/dnssec-signzone.8
 /usr/share/man/man8/dnssec-verify.8
 /usr/share/man/man8/genrandom.8
-/usr/share/man/man8/isc-hmac-fixup.8
-/usr/share/man/man8/lwresd.8
 /usr/share/man/man8/named-checkconf.8
 /usr/share/man/man8/named-checkzone.8
 /usr/share/man/man8/named-compilezone.8
