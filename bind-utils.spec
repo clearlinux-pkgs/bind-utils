@@ -6,11 +6,11 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.12.3
-Release  : 53
-URL      : https://ftp.isc.org/isc/bind9/9.12.3/bind-9.12.3.tar.gz
-Source0  : https://ftp.isc.org/isc/bind9/9.12.3/bind-9.12.3.tar.gz
-Source99 : https://ftp.isc.org/isc/bind9/9.12.3/bind-9.12.3.tar.gz.asc
+Version  : 9.12.3.p1
+Release  : 54
+URL      : https://ftp.isc.org/isc/bind9/9.12.3-P1/bind-9.12.3-P1.tar.gz
+Source0  : https://ftp.isc.org/isc/bind9/9.12.3-P1/bind-9.12.3-P1.tar.gz
+Source99 : https://ftp.isc.org/isc/bind9/9.12.3-P1/bind-9.12.3-P1.tar.gz.asc
 Summary  : Internationalized Domain Name kit (idnkit/JPNIC)
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause ISC MPL-2.0-no-copyleft-exception
@@ -94,14 +94,14 @@ man components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.12.3
+%setup -q -n bind-9.12.3-P1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542486597
+export SOURCE_DATE_EPOCH=1548289303
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -110,7 +110,7 @@ export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=use
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1542486597
+export SOURCE_DATE_EPOCH=1548289303
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/COPYRIGHT
@@ -432,7 +432,7 @@ cp unit/atf-src/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/unit_
 /usr/lib64/libbind9.so.1201
 /usr/lib64/libbind9.so.1201.0.0
 /usr/lib64/libdns.so.1207
-/usr/lib64/libdns.so.1207.0.0
+/usr/lib64/libdns.so.1207.0.1
 /usr/lib64/libirs.so.1201
 /usr/lib64/libirs.so.1201.0.0
 /usr/lib64/libisc.so.1204
