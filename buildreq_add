@@ -4,3 +4,4 @@ openssl-dev
 libxml2-dev
 readline-dev
 libcap-dev
+ply
