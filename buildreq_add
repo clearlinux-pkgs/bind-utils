@@ -5,3 +5,5 @@ libxml2-dev
 readline-dev
 libcap-dev
 ply
+krb5-dev
+e2fsprogs-dev

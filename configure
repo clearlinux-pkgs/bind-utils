@@ -1,1 +1,3 @@
---without-libxml2 ; libtoolize -c -f; aclocal -I libtool.m4 --force; autoconf -f ; %configure --without-libxml2 --with-libtool
+--without-libxml2
+--with-libtool
+--with-gssapi=krb5-config

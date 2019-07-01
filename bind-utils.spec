@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.14.3
-Release  : 58
+Release  : 59
 URL      : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz
 Source0  : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz
 Source99 : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz.asc
@@ -21,6 +21,8 @@ Requires: bind-utils-man = %{version}-%{release}
 Requires: bind-utils-python = %{version}-%{release}
 Requires: bind-utils-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+BuildRequires : e2fsprogs-dev
+BuildRequires : krb5-dev
 BuildRequires : libcap-dev
 BuildRequires : libxml2-dev
 BuildRequires : openssl-dev
@@ -145,17 +147,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1561259672
+export SOURCE_DATE_EPOCH=1562005944
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-%configure  --without-libxml2 ; libtoolize -c -f; aclocal -I libtool.m4 --force; autoconf -f ; %configure --without-libxml2 --with-libtool
+%configure  --without-libxml2 \
+--with-libtool \
+--with-gssapi=krb5-config
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1561259672
+export SOURCE_DATE_EPOCH=1562005944
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/COPYRIGHT

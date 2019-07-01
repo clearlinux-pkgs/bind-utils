@@ -1330,6 +1330,7 @@ libdns.so.1309:dns_zt_mount
 libdns.so.1309:dns_zt_setviewcommit
 libdns.so.1309:dns_zt_setviewrevert
 libdns.so.1309:dns_zt_unmount
+libdns.so.1309:dst__gssapi_init
 libdns.so.1309:dst__hmacmd5_init
 libdns.so.1309:dst__hmacsha1_init
 libdns.so.1309:dst__hmacsha224_init
@@ -1426,7 +1427,9 @@ libdns.so.1309:dst_region_computeid
 libdns.so.1309:dst_region_computerid
 libdns.so.1309:dst_result_register
 libdns.so.1309:dst_result_totext
+libdns.so.1309:gss_accept_sec_context_spnego
 libdns.so.1309:gss_error_tostring
+libdns.so.1309:gss_init_sec_context_spnego
 libdns.so.1309:gss_log
 libdns.so.1309:isc__rdatalist_addclosest
 libdns.so.1309:isc__rdatalist_addnoqname
