@@ -7,10 +7,10 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.14.3
-Release  : 60
+Release  : 61
 URL      : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz
 Source0  : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz
-Source99 : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz.asc
+Source1 : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause ISC MPL-2.0
@@ -20,6 +20,7 @@ Requires: bind-utils-license = %{version}-%{release}
 Requires: bind-utils-man = %{version}-%{release}
 Requires: bind-utils-python = %{version}-%{release}
 Requires: bind-utils-python3 = %{version}-%{release}
+Requires: ply
 BuildRequires : buildreq-distutils3
 BuildRequires : e2fsprogs-dev
 BuildRequires : krb5-dev
@@ -146,8 +147,8 @@ staticdev components for the bind-utils package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1562005944
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1568399942
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -159,29 +160,32 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1562005944
+export SOURCE_DATE_EPOCH=1568399942
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/COPYRIGHT
 cp LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/LICENSE
 cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/bin_tests_system_dyndb_driver_COPYING
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/bind9-config
+rm -f %{buildroot}/usr/bin/delv
+rm -f %{buildroot}/usr/bin/isc-config.sh
+rm -f %{buildroot}/usr/bin/lwresd
+rm -f %{buildroot}/usr/bin/named
+rm -f %{buildroot}/usr/bin/named-checkconf
+rm -f %{buildroot}/usr/bin/named-journalprint
+rm -f %{buildroot}/usr/bin/named-rrchecker
+rm -f %{buildroot}/usr/bin/rndc
+rm -f %{buildroot}/usr/bin/rndc-confgen
+rm -f %{buildroot}/usr/bin/tsig-keygen
+rm -f %{buildroot}/etc/bind.keys
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/bind9-config
-%exclude /usr/bin/delv
-%exclude /usr/bin/isc-config.sh
-%exclude /usr/bin/named
-%exclude /usr/bin/named-checkconf
-%exclude /usr/bin/named-journalprint
-%exclude /usr/bin/named-rrchecker
-%exclude /usr/bin/rndc
-%exclude /usr/bin/rndc-confgen
-%exclude /usr/bin/tsig-keygen
 /usr/bin/arpaname
 /usr/bin/ddns-confgen
 /usr/bin/dig
