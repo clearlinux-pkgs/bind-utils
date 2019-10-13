@@ -27,6 +27,7 @@ Configure miss: openssl/ssl.h in /usr/lib/ssl
 Configure miss: openssl/ssl.h in /usr/ssl
 Configure miss: openssl/ssl.h in /usr/pkg
 Configure miss: openssl/ssl.h in /usr/local
+Configure miss: openssl/ssl.h in /opt/local
 Configure miss: openssl/ssl.h in /usr/local/opt/openssl
 Configure miss: openssl/ssl.h in /usr/local/opt/libressl
 Configure miss: whether to enable FIPS mode in OpenSSL library
@@ -51,7 +52,6 @@ Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
 Configure miss: dblatex
 Configure miss: w3m
 Configure miss: kyua
-Configure miss: linker support for --wrap option
 Configure miss: whether to enable query trace logging
 Configure miss: Postgres DLZ driver
 Configure miss: MySQL DLZ driver

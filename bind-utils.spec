@@ -6,11 +6,11 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.14.3
-Release  : 61
-URL      : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz
-Source0  : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz
-Source1 : https://downloads.isc.org/isc/bind9/9.14.3/bind-9.14.3.tar.gz.asc
+Version  : 9.14.6
+Release  : 62
+URL      : https://downloads.isc.org/isc/bind9/9.14.6/bind-9.14.6.tar.gz
+Source0  : https://downloads.isc.org/isc/bind9/9.14.6/bind-9.14.6.tar.gz
+Source1 : https://downloads.isc.org/isc/bind9/9.14.6/bind-9.14.6.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause ISC MPL-2.0
@@ -30,6 +30,7 @@ BuildRequires : openssl-dev
 BuildRequires : perl
 BuildRequires : pkgconfig(cmocka)
 BuildRequires : pkgconfig(libidn2)
+BuildRequires : pkgconfig(libmaxminddb)
 BuildRequires : ply
 BuildRequires : readline-dev
 Patch1: cve-2010-0290.nopatch
@@ -141,14 +142,14 @@ staticdev components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.14.3
+%setup -q -n bind-9.14.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568399942
+export SOURCE_DATE_EPOCH=1570926030
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -160,12 +161,12 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1568399942
+export SOURCE_DATE_EPOCH=1570926030
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
-cp COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/COPYRIGHT
-cp LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/LICENSE
-cp bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/bin_tests_system_dyndb_driver_COPYING
+cp %{_builddir}/bind-9.14.6/COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/fd0b1224c11e9cb6c0a3c03e5314c51aefb94a96
+cp %{_builddir}/bind-9.14.6/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+cp %{_builddir}/bind-9.14.6/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/bind9-config
@@ -340,6 +341,7 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isc/crc64.h
 /usr/include/isc/deprecated.h
 /usr/include/isc/dir.h
+/usr/include/isc/endian.h
 /usr/include/isc/errno.h
 /usr/include/isc/error.h
 /usr/include/isc/event.h
@@ -397,6 +399,7 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isc/rwlock.h
 /usr/include/isc/safe.h
 /usr/include/isc/serial.h
+/usr/include/isc/siphash.h
 /usr/include/isc/sockaddr.h
 /usr/include/isc/socket.h
 /usr/include/isc/stat.h
@@ -473,26 +476,26 @@ rm -f %{buildroot}/etc/bind.keys
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libbind9.so.1302
-/usr/lib64/libbind9.so.1302.0.3
-/usr/lib64/libdns.so.1309
-/usr/lib64/libdns.so.1309.0.0
+/usr/lib64/libbind9.so.1302.0.4
+/usr/lib64/libdns.so.1310
+/usr/lib64/libdns.so.1310.0.1
 /usr/lib64/libirs.so.1301
 /usr/lib64/libirs.so.1301.0.3
-/usr/lib64/libisc.so.1308
-/usr/lib64/libisc.so.1308.0.1
+/usr/lib64/libisc.so.1309
+/usr/lib64/libisc.so.1309.0.1
 /usr/lib64/libisccc.so.1302
 /usr/lib64/libisccc.so.1302.0.0
 /usr/lib64/libisccfg.so.1302
-/usr/lib64/libisccfg.so.1302.0.0
-/usr/lib64/libns.so.1306
-/usr/lib64/libns.so.1306.0.1
+/usr/lib64/libisccfg.so.1302.0.1
+/usr/lib64/libns.so.1307
+/usr/lib64/libns.so.1307.0.0
 /usr/lib64/named/filter-aaaa.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/bind-utils/COPYRIGHT
-/usr/share/package-licenses/bind-utils/LICENSE
-/usr/share/package-licenses/bind-utils/bin_tests_system_dyndb_driver_COPYING
+/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
+/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+/usr/share/package-licenses/bind-utils/fd0b1224c11e9cb6c0a3c03e5314c51aefb94a96
 
 %files man
 %defattr(0644,root,root,0755)
