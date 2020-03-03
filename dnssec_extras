@@ -1,0 +1,12 @@
+/usr/bin/dnssec-cds
+/usr/bin/dnssec-checkds
+/usr/bin/dnssec-coverage
+/usr/bin/dnssec-dsfromkey
+/usr/bin/dnssec-importkey
+/usr/bin/dnssec-keyfromlabel
+/usr/bin/dnssec-keygen
+/usr/bin/dnssec-keymgr
+/usr/bin/dnssec-revoke
+/usr/bin/dnssec-settime
+/usr/bin/dnssec-signzone
+/usr/bin/dnssec-verify

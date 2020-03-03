@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.14.10
-Release  : 70
+Release  : 72
 URL      : https://downloads.isc.org/isc/bind9/9.14.10/bind-9.14.10.tar.gz
 Source0  : https://downloads.isc.org/isc/bind9/9.14.10/bind-9.14.10.tar.gz
 Source1  : https://downloads.isc.org/isc/bind9/9.14.10/bind-9.14.10.tar.gz.asc
@@ -53,12 +53,20 @@ Patch17: cve-2016-2776.nopatch
 Patch18: cve-2016-8864.nopatch
 
 %description
-OVERVIEW:
-DLZ (Dynamically Loadable Zones) is an extention to BIND 9 that
-allows zone data to be retrieved directly from an external database.
-There is no required format or schema.  DLZ drivers exist for several
-different database backends including PostgreSQL, MySQL, and LDAP and
-can be written for any other.
+BIND 9
+Contents
+1. Introduction
+2. Reporting bugs and getting help
+3. Contributing to BIND
+4. BIND 9.14 features
+5. Building BIND
+6. macOS
+7. Dependencies
+8. Compile-time options
+9. Automated testing
+10. Documentation
+11. Change log
+12. Acknowledgments
 
 %package bin
 Summary: bin components for the bind-utils package.
@@ -76,10 +84,17 @@ Requires: bind-utils-lib = %{version}-%{release}
 Requires: bind-utils-bin = %{version}-%{release}
 Provides: bind-utils-devel = %{version}-%{release}
 Requires: bind-utils = %{version}-%{release}
-Requires: bind-utils = %{version}-%{release}
 
 %description dev
 dev components for the bind-utils package.
+
+
+%package extras-dnssec
+Summary: extras-dnssec components for the bind-utils package.
+Group: Default
+
+%description extras-dnssec
+extras-dnssec components for the bind-utils package.
 
 
 %package lib
@@ -129,7 +144,6 @@ python3 components for the bind-utils package.
 Summary: staticdev components for the bind-utils package.
 Group: Default
 Requires: bind-utils-dev = %{version}-%{release}
-Requires: bind-utils-dev = %{version}-%{release}
 
 %description staticdev
 staticdev components for the bind-utils package.
@@ -144,20 +158,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1582850502
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1583266708
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export FFLAGS="$CFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fno-lto -fstack-protector-strong "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure  --without-libxml2 \
 --with-libtool \
 --with-gssapi=krb5-config
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1582850502
+export SOURCE_DATE_EPOCH=1583266708
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp %{_builddir}/bind-9.14.10/COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/10895f3e82f2d01d558e4bcf4c1fe1b18457ed83
@@ -187,18 +200,6 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/bin/arpaname
 /usr/bin/ddns-confgen
 /usr/bin/dig
-/usr/bin/dnssec-cds
-/usr/bin/dnssec-checkds
-/usr/bin/dnssec-coverage
-/usr/bin/dnssec-dsfromkey
-/usr/bin/dnssec-importkey
-/usr/bin/dnssec-keyfromlabel
-/usr/bin/dnssec-keygen
-/usr/bin/dnssec-keymgr
-/usr/bin/dnssec-revoke
-/usr/bin/dnssec-settime
-/usr/bin/dnssec-signzone
-/usr/bin/dnssec-verify
 /usr/bin/host
 /usr/bin/mdig
 /usr/bin/named-checkzone
@@ -469,6 +470,21 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/lib64/libisccc.so
 /usr/lib64/libisccfg.so
 /usr/lib64/libns.so
+
+%files extras-dnssec
+%defattr(-,root,root,-)
+/usr/bin/dnssec-cds
+/usr/bin/dnssec-checkds
+/usr/bin/dnssec-coverage
+/usr/bin/dnssec-dsfromkey
+/usr/bin/dnssec-importkey
+/usr/bin/dnssec-keyfromlabel
+/usr/bin/dnssec-keygen
+/usr/bin/dnssec-keymgr
+/usr/bin/dnssec-revoke
+/usr/bin/dnssec-settime
+/usr/bin/dnssec-signzone
+/usr/bin/dnssec-verify
 
 %files lib
 %defattr(-,root,root,-)
