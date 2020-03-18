@@ -6,11 +6,11 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.14.10
-Release  : 72
-URL      : https://downloads.isc.org/isc/bind9/9.14.10/bind-9.14.10.tar.gz
-Source0  : https://downloads.isc.org/isc/bind9/9.14.10/bind-9.14.10.tar.gz
-Source1  : https://downloads.isc.org/isc/bind9/9.14.10/bind-9.14.10.tar.gz.asc
+Version  : 9.16.1
+Release  : 73
+URL      : https://downloads.isc.org/isc/bind9/9.16.1/bind-9.16.1.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.16.1/bind-9.16.1.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.16.1/bind-9.16.1.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause ISC MPL-2.0
@@ -29,28 +29,15 @@ BuildRequires : libxml2-dev
 BuildRequires : openssl-dev
 BuildRequires : perl
 BuildRequires : pkgconfig(cmocka)
+BuildRequires : pkgconfig(json-c)
+BuildRequires : pkgconfig(libcrypto)
 BuildRequires : pkgconfig(libidn2)
 BuildRequires : pkgconfig(libmaxminddb)
+BuildRequires : pkgconfig(libuv)
+BuildRequires : pkgconfig(libxml-2.0)
+BuildRequires : pkgconfig(zlib)
 BuildRequires : ply
 BuildRequires : readline-dev
-Patch1: cve-2010-0290.nopatch
-Patch2: cve-2010-0382.nopatch
-Patch3: cve-2015-1349.nopatch
-Patch4: cve-2015-4620.nopatch
-Patch5: cve-2015-5477.nopatch
-Patch6: cve-2015-5722.nopatch
-Patch7: cve-2015-5986.nopatch
-Patch8: cve-2015-8000.nopatch
-Patch9: cve-2015-8461.nopatch
-Patch10: cve-2015-8704.nopatch
-Patch11: cve-2015-8705.nopatch
-Patch12: cve-2016-1285.nopatch
-Patch13: cve-2016-1286.nopatch
-Patch14: cve-2016-2088.nopatch
-Patch15: cve-2016-6170.nopatch
-Patch16: cve-2016-2775.nopatch
-Patch17: cve-2016-2776.nopatch
-Patch18: cve-2016-8864.nopatch
 
 %description
 BIND 9
@@ -58,7 +45,7 @@ Contents
 1. Introduction
 2. Reporting bugs and getting help
 3. Contributing to BIND
-4. BIND 9.14 features
+4. BIND 9.16 features
 5. Building BIND
 6. macOS
 7. Dependencies
@@ -150,15 +137,15 @@ staticdev components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.14.10
-cd %{_builddir}/bind-9.14.10
+%setup -q -n bind-9.16.1
+cd %{_builddir}/bind-9.16.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583266708
+export SOURCE_DATE_EPOCH=1584551160
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -170,13 +157,12 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1583266708
+export SOURCE_DATE_EPOCH=1584551160
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
-cp %{_builddir}/bind-9.14.10/COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/10895f3e82f2d01d558e4bcf4c1fe1b18457ed83
-cp %{_builddir}/bind-9.14.10/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
-cp %{_builddir}/bind-9.14.10/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
-cp %{_builddir}/bind-9.14.10/doc/arm/notes-license.xml %{buildroot}/usr/share/package-licenses/bind-utils/885e67b30439d3ff1c3cec2f0277b7779775b90f
+cp %{_builddir}/bind-9.16.1/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+cp %{_builddir}/bind-9.16.1/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
+cp %{_builddir}/bind-9.16.1/doc/arm/notes-license.xml %{buildroot}/usr/share/package-licenses/bind-utils/efe29e16e9e6ded63701bb59626f2d009f7577b0
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/bind9-config
@@ -251,8 +237,10 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/dns/ipkeylist.h
 /usr/include/dns/iptable.h
 /usr/include/dns/journal.h
+/usr/include/dns/kasp.h
 /usr/include/dns/keydata.h
 /usr/include/dns/keyflags.h
+/usr/include/dns/keymgr.h
 /usr/include/dns/keytable.h
 /usr/include/dns/keyvalues.h
 /usr/include/dns/lib.h
@@ -324,8 +312,10 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/irs/types.h
 /usr/include/irs/version.h
 /usr/include/isc/aes.h
+/usr/include/isc/align.h
 /usr/include/isc/app.h
 /usr/include/isc/assertions.h
+/usr/include/isc/astack.h
 /usr/include/isc/atomic.h
 /usr/include/isc/backtrace.h
 /usr/include/isc/base32.h
@@ -352,11 +342,11 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isc/heap.h
 /usr/include/isc/hex.h
 /usr/include/isc/hmac.h
+/usr/include/isc/hp.h
 /usr/include/isc/ht.h
 /usr/include/isc/httpd.h
 /usr/include/isc/interfaceiter.h
 /usr/include/isc/iterated_hash.h
-/usr/include/isc/json.h
 /usr/include/isc/lang.h
 /usr/include/isc/lex.h
 /usr/include/isc/lfsr.h
@@ -369,10 +359,12 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isc/mem.h
 /usr/include/isc/meminfo.h
 /usr/include/isc/mutex.h
+/usr/include/isc/mutexatomic.h
 /usr/include/isc/mutexblock.h
 /usr/include/isc/net.h
 /usr/include/isc/netaddr.h
 /usr/include/isc/netdb.h
+/usr/include/isc/netmgr.h
 /usr/include/isc/netscope.h
 /usr/include/isc/nonce.h
 /usr/include/isc/offset.h
@@ -418,7 +410,6 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isc/types.h
 /usr/include/isc/util.h
 /usr/include/isc/version.h
-/usr/include/isc/xml.h
 /usr/include/isccc/alist.h
 /usr/include/isccc/base64.h
 /usr/include/isccc/cc.h
@@ -435,6 +426,7 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isccfg/cfg.h
 /usr/include/isccfg/dnsconf.h
 /usr/include/isccfg/grammar.h
+/usr/include/isccfg/kaspconf.h
 /usr/include/isccfg/log.h
 /usr/include/isccfg/namedconf.h
 /usr/include/isccfg/version.h
@@ -458,11 +450,8 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/pk11/pk11.h
 /usr/include/pk11/result.h
 /usr/include/pk11/site.h
-/usr/include/pkcs11/cryptoki.h
 /usr/include/pkcs11/eddsa.h
 /usr/include/pkcs11/pkcs11.h
-/usr/include/pkcs11/pkcs11f.h
-/usr/include/pkcs11/pkcs11t.h
 /usr/lib64/libbind9.so
 /usr/lib64/libdns.so
 /usr/lib64/libirs.so
@@ -488,37 +477,34 @@ rm -f %{buildroot}/etc/bind.keys
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libbind9.so.1302
-/usr/lib64/libbind9.so.1302.0.5
-/usr/lib64/libdns.so.1312
-/usr/lib64/libdns.so.1312.0.0
-/usr/lib64/libirs.so.1301
-/usr/lib64/libirs.so.1301.0.3
-/usr/lib64/libisc.so.1310
-/usr/lib64/libisc.so.1310.0.1
-/usr/lib64/libisccc.so.1302
-/usr/lib64/libisccc.so.1302.0.0
-/usr/lib64/libisccfg.so.1302
-/usr/lib64/libisccfg.so.1302.0.4
-/usr/lib64/libns.so.1307
-/usr/lib64/libns.so.1307.1.2
+/usr/lib64/libbind9.so.1600
+/usr/lib64/libbind9.so.1600.0.1
+/usr/lib64/libdns.so.1601
+/usr/lib64/libdns.so.1601.0.0
+/usr/lib64/libirs.so.1600
+/usr/lib64/libirs.so.1600.0.1
+/usr/lib64/libisc.so.1601
+/usr/lib64/libisc.so.1601.0.0
+/usr/lib64/libisccc.so.1600
+/usr/lib64/libisccc.so.1600.0.1
+/usr/lib64/libisccfg.so.1600
+/usr/lib64/libisccfg.so.1600.0.1
+/usr/lib64/libns.so.1601
+/usr/lib64/libns.so.1601.0.0
 /usr/lib64/named/filter-aaaa.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/bind-utils/10895f3e82f2d01d558e4bcf4c1fe1b18457ed83
 /usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
-/usr/share/package-licenses/bind-utils/885e67b30439d3ff1c3cec2f0277b7779775b90f
 /usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+/usr/share/package-licenses/bind-utils/efe29e16e9e6ded63701bb59626f2d009f7577b0
 
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/arpaname.1
-/usr/share/man/man1/bind9-config.1
 /usr/share/man/man1/delv.1
 /usr/share/man/man1/dig.1
 /usr/share/man/man1/host.1
-/usr/share/man/man1/isc-config.sh.1
 /usr/share/man/man1/mdig.1
 /usr/share/man/man1/named-rrchecker.1
 /usr/share/man/man1/nslookup.1

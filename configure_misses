@@ -1,5 +1,5 @@
 Configure miss: whether to enable fuzzing mode
-Configure miss: emacs-etags
+Configure miss: whether to emulate atomics with mutexes
 Configure miss: net/if6.h
 Configure miss: sysctlbyname
 Configure miss: sys/devpoll.h usability
@@ -21,21 +21,10 @@ Configure miss: cpuset_setaffinity
 Configure miss: processor_bind
 Configure miss: pthread_set_name_np
 Configure miss: pthread_np.h
-Configure miss: crypto
-Configure miss: openssl/ssl.h in /usr/local/ssl
-Configure miss: openssl/ssl.h in /usr/lib/ssl
-Configure miss: openssl/ssl.h in /usr/ssl
-Configure miss: openssl/ssl.h in /usr/pkg
-Configure miss: openssl/ssl.h in /usr/local
-Configure miss: openssl/ssl.h in /opt/local
-Configure miss: openssl/ssl.h in /usr/local/opt/openssl
-Configure miss: openssl/ssl.h in /usr/local/opt/libressl
+Configure miss: uv_import
 Configure miss: whether to enable FIPS mode in OpenSSL library
 Configure miss: PKCS11 for Public-Key Cryptography
 Configure miss: lmdb library
-Configure miss: libxml2 library
-Configure miss: json library
-Configure miss: zlib library
 Configure miss: smf_enable_instance in -lscf
 Configure miss: whether to use purify
 Configure miss: whether to use gperftools profiler
