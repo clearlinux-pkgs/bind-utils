@@ -8,8 +8,6 @@ libjson-c.so.4
 libk5crypto.so.3
 libkrb5.so.3
 libmaxminddb.so.0
-libnsl.so.1
 libpthread.so.0
-librt.so.1
 libuv.so.1
 libz.so.1
