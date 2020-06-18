@@ -1574,8 +1574,8 @@ libisc.so.1603:isc__nm_async_closecb
 libisc.so.1603:isc__nm_async_shutdown
 libisc.so.1603:isc__nm_async_tcp_pauseread
 libisc.so.1603:isc__nm_async_tcp_startread
-libisc.so.1603:isc__nm_async_tcpchildlisten
-libisc.so.1603:isc__nm_async_tcpchildstop
+libisc.so.1603:isc__nm_async_tcpaccept
+libisc.so.1603:isc__nm_async_tcpchildaccept
 libisc.so.1603:isc__nm_async_tcpclose
 libisc.so.1603:isc__nm_async_tcpconnect
 libisc.so.1603:isc__nm_async_tcpdnsclose
@@ -2216,6 +2216,8 @@ libisc.so.1603:isc_timermgr_destroy
 libisc.so.1603:isc_timermgr_poke
 libisc.so.1603:isc_tm_strptime
 libisc.so.1603:isc_tm_timegm
+libisc.so.1603:isc_utf8_bom
+libisc.so.1603:isc_utf8_valid
 libisc.so.1603:isc_uv_export
 libisc.so.1603:isc_uv_import
 libisc.so.1603:pk11_attribute_bytype

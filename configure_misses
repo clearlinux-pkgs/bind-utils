@@ -1,6 +1,7 @@
 Configure miss: whether to enable fuzzing mode
 Configure miss: whether to emulate atomics with mutexes
 Configure miss: pytest-3
+Configure miss: py.test-3
 Configure miss: net/if6.h
 Configure miss: sysctlbyname
 Configure miss: sys/devpoll.h usability
@@ -39,8 +40,6 @@ Configure miss: readline
 Configure miss: readline
 Configure miss: readline
 Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
-Configure miss: dblatex
-Configure miss: w3m
 Configure miss: kyua
 Configure miss: whether to enable query trace logging
 Configure miss: Postgres DLZ driver

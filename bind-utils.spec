@@ -6,11 +6,11 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.16.3
-Release  : 75
-URL      : https://downloads.isc.org/isc/bind9/9.16.3/bind-9.16.3.tar.xz
-Source0  : https://downloads.isc.org/isc/bind9/9.16.3/bind-9.16.3.tar.xz
-Source1  : https://downloads.isc.org/isc/bind9/9.16.3/bind-9.16.3.tar.xz.asc
+Version  : 9.16.4
+Release  : 76
+URL      : https://downloads.isc.org/isc/bind9/9.16.4/bind-9.16.4.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.16.4/bind-9.16.4.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.16.4/bind-9.16.4.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause ISC MPL-2.0
@@ -22,6 +22,7 @@ Requires: bind-utils-python = %{version}-%{release}
 Requires: bind-utils-python3 = %{version}-%{release}
 Requires: ply
 BuildRequires : buildreq-distutils3
+BuildRequires : doxygen
 BuildRequires : e2fsprogs-dev
 BuildRequires : krb5-dev
 BuildRequires : libcap-dev
@@ -138,15 +139,15 @@ staticdev components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.16.3
-cd %{_builddir}/bind-9.16.3
+%setup -q -n bind-9.16.4
+cd %{_builddir}/bind-9.16.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1589935871
+export SOURCE_DATE_EPOCH=1592439829
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -158,12 +159,11 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1589935871
+export SOURCE_DATE_EPOCH=1592439829
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
-cp %{_builddir}/bind-9.16.3/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
-cp %{_builddir}/bind-9.16.3/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
-cp %{_builddir}/bind-9.16.3/doc/arm/notes-license.xml %{buildroot}/usr/share/package-licenses/bind-utils/efe29e16e9e6ded63701bb59626f2d009f7577b0
+cp %{_builddir}/bind-9.16.4/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+cp %{_builddir}/bind-9.16.4/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/bind9-config
@@ -246,6 +246,7 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/dns/keyvalues.h
 /usr/include/dns/lib.h
 /usr/include/dns/librpz.h
+/usr/include/dns/lmdb.h
 /usr/include/dns/log.h
 /usr/include/dns/lookup.h
 /usr/include/dns/master.h
@@ -409,6 +410,7 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isc/timer.h
 /usr/include/isc/tm.h
 /usr/include/isc/types.h
+/usr/include/isc/utf8.h
 /usr/include/isc/util.h
 /usr/include/isc/version.h
 /usr/include/isccc/alist.h
@@ -478,32 +480,32 @@ rm -f %{buildroot}/etc/bind.keys
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libbind9.so.1600
-/usr/lib64/libbind9.so.1600.0.2
+/usr/lib64/libbind9.so.1600.0.3
 /usr/lib64/libdns.so.1603
-/usr/lib64/libdns.so.1603.0.0
+/usr/lib64/libdns.so.1603.1.0
 /usr/lib64/libirs.so.1601
 /usr/lib64/libirs.so.1601.0.0
 /usr/lib64/libisc.so.1603
-/usr/lib64/libisc.so.1603.0.0
+/usr/lib64/libisc.so.1603.1.0
 /usr/lib64/libisccc.so.1600
 /usr/lib64/libisccc.so.1600.0.2
 /usr/lib64/libisccfg.so.1600
-/usr/lib64/libisccfg.so.1600.0.2
+/usr/lib64/libisccfg.so.1600.0.3
 /usr/lib64/libns.so.1603
-/usr/lib64/libns.so.1603.0.0
+/usr/lib64/libns.so.1603.0.1
 /usr/lib64/named/filter-aaaa.so
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
 /usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
-/usr/share/package-licenses/bind-utils/efe29e16e9e6ded63701bb59626f2d009f7577b0
 
 %files man
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/arpaname.1
 /usr/share/man/man1/delv.1
 /usr/share/man/man1/dig.1
+/usr/share/man/man1/dnstap-read.1
 /usr/share/man/man1/host.1
 /usr/share/man/man1/mdig.1
 /usr/share/man/man1/named-rrchecker.1
@@ -527,13 +529,12 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/share/man/man8/filter-aaaa.8
 /usr/share/man/man8/named-checkconf.8
 /usr/share/man/man8/named-checkzone.8
-/usr/share/man/man8/named-compilezone.8
 /usr/share/man/man8/named-journalprint.8
+/usr/share/man/man8/named-nzd2nzf.8
 /usr/share/man/man8/named.8
 /usr/share/man/man8/nsec3hash.8
 /usr/share/man/man8/rndc-confgen.8
 /usr/share/man/man8/rndc.8
-/usr/share/man/man8/tsig-keygen.8
 
 %files python
 %defattr(-,root,root,-)
