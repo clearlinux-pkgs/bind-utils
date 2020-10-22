@@ -1,9 +1,12 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-openssl-dev
-libxml2-dev
-readline-dev
-libcap-dev
-ply
-krb5-dev
+doxygen
 e2fsprogs-dev
+krb5-dev
+libcap-dev
+libxml2-dev
+openssl-dev
+perl
+ply
+pytest
+readline-dev
