@@ -1,3 +1,26 @@
+	--- 9.16.10 released ---
+
+5544.	[func]		Restore the default value of "nocookie-udp-size" to 4096
+			bytes. [GL #2250]
+
+5541.	[func]		Adjust the "max-recursion-queries" default from 75 to
+			100. [GL #2305]
+
+5540.	[port]		Fix building with native PKCS#11 support for AEP Keyper.
+			[GL #2315]
+
+5539.	[bug]		Tighten handling of missing DNS COOKIE responses over
+			UDP by falling back to TCP. [GL #2275]
+
+5538.	[func]		Add NSEC3 support to KASP. A new option for
+			"dnssec-policy", "nsec3param", can be used to set the
+			desired NSEC3 parameters. NSEC3 salt collisions are
+			automatically prevented during resalting. Salt
+			generation is now logged with zone context. [GL #1620]
+
+5534.	[bug]		The CNAME synthesized from a DNAME was incorrectly
+			followed when the QTYPE was CNAME or ANY. [GL #2280]
+
 	--- 9.16.9 released ---
 
 5533.	[func]		Add the "stale-refresh-time" option, a time window that
