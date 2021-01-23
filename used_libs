@@ -9,5 +9,8 @@ libk5crypto.so.3
 libkrb5.so.3
 libmaxminddb.so.0
 libpthread.so.0
+libreadline.so.8
+libssl.so.1.1
+libtinfo.so.6
 libuv.so.1
 libz.so.1

@@ -38,8 +38,6 @@ Configure miss: readline
 Configure miss: readline
 Configure miss: readline
 Configure miss: readline
-Configure miss: readline
-Configure miss: readline
 Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
 Configure miss: kyua
 Configure miss: whether to enable query trace logging
