@@ -1,51 +1,51 @@
-Configure miss: whether to enable fuzzing mode
-Configure miss: whether to emulate atomics with mutexes
-Configure miss: w3m
-Configure miss: pytest-3
-Configure miss: py.test-3
-Configure miss: net/if6.h
-Configure miss: sysctlbyname
-Configure miss: sys/devpoll.h usability
-Configure miss: sys/devpoll.h presence
-Configure miss: sys/devpoll.h
-Configure miss: devpoll.h usability
-Configure miss: devpoll.h presence
-Configure miss: devpoll.h
+Configure miss: Berkeley DB DLZ driver...
+Configure miss: LDAP DLZ driver
+Configure miss: MySQL DLZ driver
+Configure miss: ODBC DLZ driver
+Configure miss: PKCS11 for Public-Key Cryptography
+Configure miss: Postgres DLZ driver
+Configure miss: SSL_CTX_set_min_proto_version
 Configure miss: arc4random
 Configure miss: arc4random_uniform
-Configure miss: pthread_yield_np
-Configure miss: sys/cpuset.h usability
-Configure miss: sys/cpuset.h presence
-Configure miss: sys/cpuset.h
-Configure miss: sys/procset.h usability
-Configure miss: sys/procset.h presence
-Configure miss: sys/procset.h
 Configure miss: cpuset_setaffinity
-Configure miss: processor_bind
-Configure miss: pthread_set_name_np
-Configure miss: pthread_np.h
-Configure miss: uv_import
-Configure miss: whether to enable FIPS mode in OpenSSL library
-Configure miss: PKCS11 for Public-Key Cryptography
-Configure miss: lmdb library
-Configure miss: smf_enable_instance in -lscf
-Configure miss: whether to use purify
-Configure miss: whether to use gperftools profiler
-Configure miss: readline
-Configure miss: readline
-Configure miss: readline
-Configure miss: readline
-Configure miss: readline
-Configure miss: readline
-Configure miss: readline
-Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
-Configure miss: kyua
-Configure miss: whether to enable query trace logging
-Configure miss: Postgres DLZ driver
-Configure miss: MySQL DLZ driver
-Configure miss: Berkeley DB DLZ driver...
+Configure miss: devpoll.h
+Configure miss: devpoll.h presence
+Configure miss: devpoll.h usability
 Configure miss: file system DLZ driver
-Configure miss: LDAP DLZ driver
-Configure miss: ODBC DLZ driver
+Configure miss: kyua
+Configure miss: lmdb library
+Configure miss: net/if6.h
+Configure miss: processor_bind
+Configure miss: pthread_np.h
+Configure miss: pthread_set_name_np
+Configure miss: pthread_yield_np
+Configure miss: py.test-3
+Configure miss: pytest-3
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: readline
+Configure miss: smf_enable_instance in -lscf
 Configure miss: stub DLZ driver
-Configure miss: contributed DLZ drivers
+Configure miss: sys/cpuset.h
+Configure miss: sys/cpuset.h presence
+Configure miss: sys/cpuset.h usability
+Configure miss: sys/devpoll.h
+Configure miss: sys/devpoll.h presence
+Configure miss: sys/devpoll.h usability
+Configure miss: sys/procset.h
+Configure miss: sys/procset.h presence
+Configure miss: sys/procset.h usability
+Configure miss: sysctlbyname
+Configure miss: uv_import
+Configure miss: w3m
+Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
+Configure miss: whether to emulate atomics with mutexes
+Configure miss: whether to enable FIPS mode in OpenSSL library
+Configure miss: whether to enable fuzzing mode
+Configure miss: whether to enable query trace logging
+Configure miss: whether to use gperftools profiler
+Configure miss: whether to use purify

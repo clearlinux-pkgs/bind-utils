@@ -6,14 +6,14 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.16.12
-Release  : 89
-URL      : https://downloads.isc.org/isc/bind9/9.16.12/bind-9.16.12.tar.xz
-Source0  : https://downloads.isc.org/isc/bind9/9.16.12/bind-9.16.12.tar.xz
-Source1  : https://downloads.isc.org/isc/bind9/9.16.12/bind-9.16.12.tar.xz.asc
+Version  : 9.16.13
+Release  : 90
+URL      : https://downloads.isc.org/isc/bind9/9.16.13/bind-9.16.13.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.16.13/bind-9.16.13.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.16.13/bind-9.16.13.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : Apache-2.0 BSD-3-Clause ISC MPL-2.0
+License  : BSD-3-Clause ISC MPL-2.0
 Requires: bind-utils-bin = %{version}-%{release}
 Requires: bind-utils-lib = %{version}-%{release}
 Requires: bind-utils-license = %{version}-%{release}
@@ -140,15 +140,15 @@ staticdev components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.16.12
-cd %{_builddir}/bind-9.16.12
+%setup -q -n bind-9.16.13
+cd %{_builddir}/bind-9.16.13
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1613623381
+export SOURCE_DATE_EPOCH=1616112604
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -160,12 +160,11 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1613623381
+export SOURCE_DATE_EPOCH=1616112604
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
-cp %{_builddir}/bind-9.16.12/COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/9f45eef88030996c88e6adfbc2b58dacd8ec8f23
-cp %{_builddir}/bind-9.16.12/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
-cp %{_builddir}/bind-9.16.12/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
+cp %{_builddir}/bind-9.16.13/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+cp %{_builddir}/bind-9.16.13/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/bind9-config
@@ -411,6 +410,7 @@ rm -f %{buildroot}/etc/bind.keys
 /usr/include/isc/thread.h
 /usr/include/isc/time.h
 /usr/include/isc/timer.h
+/usr/include/isc/tls.h
 /usr/include/isc/tm.h
 /usr/include/isc/types.h
 /usr/include/isc/utf8.h
@@ -475,26 +475,25 @@ rm -f %{buildroot}/etc/bind.keys
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libbind9-9.16.12.so
+/usr/lib64/libbind9-9.16.13.so
 /usr/lib64/libbind9.so
-/usr/lib64/libdns-9.16.12.so
+/usr/lib64/libdns-9.16.13.so
 /usr/lib64/libdns.so
-/usr/lib64/libirs-9.16.12.so
+/usr/lib64/libirs-9.16.13.so
 /usr/lib64/libirs.so
-/usr/lib64/libisc-9.16.12.so
+/usr/lib64/libisc-9.16.13.so
 /usr/lib64/libisc.so
-/usr/lib64/libisccc-9.16.12.so
+/usr/lib64/libisccc-9.16.13.so
 /usr/lib64/libisccc.so
-/usr/lib64/libisccfg-9.16.12.so
+/usr/lib64/libisccfg-9.16.13.so
 /usr/lib64/libisccfg.so
-/usr/lib64/libns-9.16.12.so
+/usr/lib64/libns-9.16.13.so
 /usr/lib64/libns.so
 /usr/lib64/named/filter-aaaa.so
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
-/usr/share/package-licenses/bind-utils/9f45eef88030996c88e6adfbc2b58dacd8ec8f23
 /usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
 
 %files man
