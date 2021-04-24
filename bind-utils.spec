@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.16.13
-Release  : 90
+Release  : 91
 URL      : https://downloads.isc.org/isc/bind9/9.16.13/bind-9.16.13.tar.xz
 Source0  : https://downloads.isc.org/isc/bind9/9.16.13/bind-9.16.13.tar.xz
 Source1  : https://downloads.isc.org/isc/bind9/9.16.13/bind-9.16.13.tar.xz.asc
