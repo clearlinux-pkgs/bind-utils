@@ -27,6 +27,7 @@ Configure miss: net/if6.h
 Configure miss: processor_bind
 Configure miss: pthread_np.h
 Configure miss: pthread_set_name_np
+Configure miss: pthread_yield
 Configure miss: pthread_yield_np
 Configure miss: py.test-3
 Configure miss: pytest-3
