@@ -6,11 +6,11 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.16.20
-Release  : 100
-URL      : https://downloads.isc.org/isc/bind9/9.16.20/bind-9.16.20.tar.xz
-Source0  : https://downloads.isc.org/isc/bind9/9.16.20/bind-9.16.20.tar.xz
-Source1  : https://downloads.isc.org/isc/bind9/9.16.20/bind-9.16.20.tar.xz.asc
+Version  : 9.16.21
+Release  : 101
+URL      : https://downloads.isc.org/isc/bind9/9.16.21/bind-9.16.21.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.16.21/bind-9.16.21.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.16.21/bind-9.16.21.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause ISC MPL-2.0
@@ -140,15 +140,15 @@ staticdev components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.16.20
-cd %{_builddir}/bind-9.16.20
+%setup -q -n bind-9.16.21
+cd %{_builddir}/bind-9.16.21
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1629306947
+export SOURCE_DATE_EPOCH=1631727454
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -160,11 +160,11 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-re
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1629306947
+export SOURCE_DATE_EPOCH=1631727454
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
-cp %{_builddir}/bind-9.16.20/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
-cp %{_builddir}/bind-9.16.20/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
+cp %{_builddir}/bind-9.16.21/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+cp %{_builddir}/bind-9.16.21/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/bind9-config
@@ -477,19 +477,19 @@ rm -f %{buildroot}/etc/bind.keys
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libbind9-9.16.20.so
+/usr/lib64/libbind9-9.16.21.so
 /usr/lib64/libbind9.so
-/usr/lib64/libdns-9.16.20.so
+/usr/lib64/libdns-9.16.21.so
 /usr/lib64/libdns.so
-/usr/lib64/libirs-9.16.20.so
+/usr/lib64/libirs-9.16.21.so
 /usr/lib64/libirs.so
-/usr/lib64/libisc-9.16.20.so
+/usr/lib64/libisc-9.16.21.so
 /usr/lib64/libisc.so
-/usr/lib64/libisccc-9.16.20.so
+/usr/lib64/libisccc-9.16.21.so
 /usr/lib64/libisccc.so
-/usr/lib64/libisccfg-9.16.20.so
+/usr/lib64/libisccfg-9.16.21.so
 /usr/lib64/libisccfg.so
-/usr/lib64/libns-9.16.20.so
+/usr/lib64/libns-9.16.21.so
 /usr/lib64/libns.so
 /usr/lib64/named/filter-aaaa.so
 
