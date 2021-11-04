@@ -14,14 +14,7 @@ Configure miss: devpoll.h presence
 Configure miss: devpoll.h usability
 Configure miss: extended malloc attributes
 Configure miss: file system DLZ driver
-Configure miss: gssapi_krb5.h
-Configure miss: gssapi_krb5.h presence
-Configure miss: gssapi_krb5.h usability
-Configure miss: kerberosv5/krb5.h
-Configure miss: kerberosv5/krb5.h presence
-Configure miss: kerberosv5/krb5.h usability
 Configure miss: kyua
-Configure miss: linking as -lgssapi_krb5
 Configure miss: lmdb library
 Configure miss: net/if6.h
 Configure miss: processor_bind
