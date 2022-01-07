@@ -7,6 +7,5 @@ libcap-dev
 libxml2-dev
 openssl-dev
 perl
-ply
-pytest
+pypi(ply)
 readline-dev

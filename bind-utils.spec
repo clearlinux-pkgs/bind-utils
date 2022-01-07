@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.16.24
-Release  : 108
+Release  : 110
 URL      : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz
 Source0  : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz
 Source1  : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz.asc
@@ -38,8 +38,8 @@ BuildRequires : pkgconfig(libssl)
 BuildRequires : pkgconfig(libuv)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : ply
-BuildRequires : pytest
+BuildRequires : pypi(ply)
+BuildRequires : pypi-pytest
 BuildRequires : readline-dev
 
 %description
@@ -148,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640643015
+export SOURCE_DATE_EPOCH=1641550250
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -160,7 +160,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-re
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1640643015
+export SOURCE_DATE_EPOCH=1641550250
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp %{_builddir}/bind-9.16.24/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
