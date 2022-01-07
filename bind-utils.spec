@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : bind-utils
 Version  : 9.16.24
-Release  : 110
+Release  : 111
 URL      : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz
 Source0  : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz
 Source1  : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz.asc
@@ -20,7 +20,7 @@ Requires: bind-utils-license = %{version}-%{release}
 Requires: bind-utils-man = %{version}-%{release}
 Requires: bind-utils-python = %{version}-%{release}
 Requires: bind-utils-python3 = %{version}-%{release}
-Requires: ply
+Requires: pypi(ply)
 BuildRequires : buildreq-distutils3
 BuildRequires : doxygen
 BuildRequires : e2fsprogs-dev
@@ -148,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641550250
+export SOURCE_DATE_EPOCH=1641568703
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -160,7 +160,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-re
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1641550250
+export SOURCE_DATE_EPOCH=1641568703
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp %{_builddir}/bind-9.16.24/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
