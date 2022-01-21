@@ -6,14 +6,14 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.16.24
-Release  : 111
-URL      : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz
-Source0  : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz
-Source1  : https://downloads.isc.org/isc/bind9/9.16.24/bind-9.16.24.tar.xz.asc
+Version  : 9.16.25
+Release  : 112
+URL      : https://downloads.isc.org/isc/bind9/9.16.25/bind-9.16.25.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.16.25/bind-9.16.25.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.16.25/bind-9.16.25.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause ISC MPL-2.0
+License  : Apache-2.0 BSD-2-Clause BSD-3-Clause CC0-1.0 GPL-3.0 ISC MIT MPL-2.0
 Requires: bind-utils-bin = %{version}-%{release}
 Requires: bind-utils-lib = %{version}-%{release}
 Requires: bind-utils-license = %{version}-%{release}
@@ -140,15 +140,15 @@ staticdev components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.16.24
-cd %{_builddir}/bind-9.16.24
+%setup -q -n bind-9.16.25
+cd %{_builddir}/bind-9.16.25
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641568703
+export SOURCE_DATE_EPOCH=1642790132
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -160,11 +160,19 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-re
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1641568703
+export SOURCE_DATE_EPOCH=1642790132
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
-cp %{_builddir}/bind-9.16.24/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
-cp %{_builddir}/bind-9.16.24/bin/tests/system/dyndb/driver/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
+cp %{_builddir}/bind-9.16.25/COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/3b2368f691971fc3858c5865116abed12235ba63
+cp %{_builddir}/bind-9.16.25/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/4fa8d983d44984c7a1d7bbca6971242b10155776
+cp %{_builddir}/bind-9.16.25/LICENSES/Apache-2.0.txt %{buildroot}/usr/share/package-licenses/bind-utils/be561fe6eb626c2566b9a6c0885554b4ee4e6b74
+cp %{_builddir}/bind-9.16.25/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/bind-utils/ea97eb88ae53ec41e26f8542176ab986d7bc943a
+cp %{_builddir}/bind-9.16.25/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/bind-utils/f1946dab78e58c04c8c25ec6b074f5fc5c2830fe
+cp %{_builddir}/bind-9.16.25/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/bind-utils/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
+cp %{_builddir}/bind-9.16.25/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/bind-utils/e3bdbf20d43fc066a1b40a64d57d4ae5a31f177f
+cp %{_builddir}/bind-9.16.25/LICENSES/ISC.txt %{buildroot}/usr/share/package-licenses/bind-utils/ce831c7cccd12e138f404a1305fb26a4acd1fed9
+cp %{_builddir}/bind-9.16.25/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/bind-utils/adadb67a9875aeeac285309f1eab6e47d9ee08a7
+cp %{_builddir}/bind-9.16.25/LICENSES/MPL-2.0.txt %{buildroot}/usr/share/package-licenses/bind-utils/08bfe145d82917963e1214e61ad2f2b23c38d6cb
 %make_install
 ## Remove excluded files
 rm -f %{buildroot}*/usr/bin/bind9-config
@@ -477,26 +485,34 @@ rm -f %{buildroot}*/etc/bind.keys
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libbind9-9.16.24.so
+/usr/lib64/libbind9-9.16.25.so
 /usr/lib64/libbind9.so
-/usr/lib64/libdns-9.16.24.so
+/usr/lib64/libdns-9.16.25.so
 /usr/lib64/libdns.so
-/usr/lib64/libirs-9.16.24.so
+/usr/lib64/libirs-9.16.25.so
 /usr/lib64/libirs.so
-/usr/lib64/libisc-9.16.24.so
+/usr/lib64/libisc-9.16.25.so
 /usr/lib64/libisc.so
-/usr/lib64/libisccc-9.16.24.so
+/usr/lib64/libisccc-9.16.25.so
 /usr/lib64/libisccc.so
-/usr/lib64/libisccfg-9.16.24.so
+/usr/lib64/libisccfg-9.16.25.so
 /usr/lib64/libisccfg.so
-/usr/lib64/libns-9.16.24.so
+/usr/lib64/libns-9.16.25.so
 /usr/lib64/libns.so
 /usr/lib64/named/filter-aaaa.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/bind-utils/39f18898eca8d182f9386279eae016ca016a8c84
-/usr/share/package-licenses/bind-utils/ece3df1263c100f93c427face535a292723d38e7
+/usr/share/package-licenses/bind-utils/08bfe145d82917963e1214e61ad2f2b23c38d6cb
+/usr/share/package-licenses/bind-utils/3b2368f691971fc3858c5865116abed12235ba63
+/usr/share/package-licenses/bind-utils/4fa8d983d44984c7a1d7bbca6971242b10155776
+/usr/share/package-licenses/bind-utils/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
+/usr/share/package-licenses/bind-utils/adadb67a9875aeeac285309f1eab6e47d9ee08a7
+/usr/share/package-licenses/bind-utils/be561fe6eb626c2566b9a6c0885554b4ee4e6b74
+/usr/share/package-licenses/bind-utils/ce831c7cccd12e138f404a1305fb26a4acd1fed9
+/usr/share/package-licenses/bind-utils/e3bdbf20d43fc066a1b40a64d57d4ae5a31f177f
+/usr/share/package-licenses/bind-utils/ea97eb88ae53ec41e26f8542176ab986d7bc943a
+/usr/share/package-licenses/bind-utils/f1946dab78e58c04c8c25ec6b074f5fc5c2830fe
 
 %files man
 %defattr(0644,root,root,0755)

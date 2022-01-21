@@ -1,3 +1,34 @@
+	--- 9.16.25 released ---
+
+5790.	[bug]		Enforce enqueuing TCP resumeread to prevent the
+			next read callback from being executed before the
+			current read callback has finished, and the worker
+			receive buffer has been marked as "freed". [GL #3079]
+
+5789.	[bug]		Allow replacing expired zone signatures with
+			signatures created by the KSK. [GL #3049]
+
+5788.	[bug]		An assertion could occur if a catalog zone event was
+			scheduled while the task manager was being shut
+			down. [GL #3074]
+
+5787.	[doc]		Update 'auto-dnssec' documentation, it may only be
+			activated at zone level. [GL #3023]
+
+5786.	[bug]		Defer detaching from zone->raw in zone_shutdown() if
+			the zone is in the process of being dumped to disk, to
+			ensure that the unsigned serial number information is
+			always written in the raw-format header of the signed
+			version on an inline-signed zone. [GL #3071]
+
+5785.	[bug]		named could leak memory when two dnssec-policy clauses
+			had the same name. named failed to log this error.
+			[GL #3085]
+
+5776.	[bug]		Add a missing isc_condition_destroy() for nmsocket
+			condition variable and add missing isc_mutex_destroy()
+			for nmworker lock. [GL #3051]
+
 	--- 9.16.24 released ---
 
 5773.	[func]		Change the message when accepting TCP connection has
@@ -21,6 +52,16 @@
 5757.	[test]		Replace sed in nsupdate system test with awk to
 			construct the nsupdate command.  The sed expression
 			was not reliably changing the ttl. [GL #3003]
+
+5676.	[func]		Memory use in named was excessive. This has been
+			addressed by:
+			- Replacing locked memory pools with normal memory
+			  allocations.
+			- Reducing the number of retained free items in
+			  unlocked memory pools.
+			- Disabling the internal allocator by default.
+			  "named -M internal" turns it back on.
+			[GL #2398]
 
 	--- 9.16.23 released ---
 
