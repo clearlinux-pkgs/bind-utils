@@ -46,6 +46,7 @@ Configure miss: sys/sysctl.h
 Configure miss: sysctlbyname
 Configure miss: w3m
 Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
+Configure miss: whether struct msghdr uses padding for alignment
 Configure miss: whether to emulate atomics with mutexes
 Configure miss: whether to enable FIPS mode in OpenSSL library
 Configure miss: whether to enable fuzzing mode
