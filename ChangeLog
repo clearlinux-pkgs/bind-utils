@@ -1,3 +1,94 @@
+	--- 9.16.29 released ---
+
+5885.	[bug]		RPZ NSIP and NSDNAME rule processing didn't handle stub
+			and static-stub zones at or above the query name.  This
+			has now been addressed. [GL #3232]
+
+5881.	[bug]		dig +nssearch could hang in rare cases when recv_done()
+			callback was being called earlier than send_done().
+			[GL #3278]
+
+5880.	[func]		Add new named command-line option -C to print built-in
+			defaults. [GL #1326]
+
+5879.	[contrib]	dlz: Add FALLTHROUGH and UNREACHABLE macros. [GL #3306]
+
+5874.	[bug]		keymgr didn't work with python 3.11. [GL !6157]
+
+5866.	[bug]		Work around a jemalloc quirk which could trigger an
+			out-of-memory condition in named over time. [GL #3287]
+
+5863.	[bug]		If there was a pending negative cache DS entry,
+			validations depending upon it could fail. [GL #3279]
+
+5858.	[bug]		Don't remove CDS/CDNSKEY DELETE records on zone sign
+			when using 'auto-dnssec maintain;'. [GL #2931]
+
+	--- 9.16.28 released ---
+
+5856.	[bug]		The "starting maxtime timer" message related to outgoing
+			zone transfers was incorrectly logged at the ERROR level
+			instead of DEBUG(1). [GL #3208]
+
+5852.	[func]		Add new "reuseport" option to enable/disable load
+			balancing of sockets. [GL #3249]
+
+5843.	[bug]		When an UPDATE targets a zone that is not configured,
+			the requested zone name is now logged in the "not
+			authoritative" error message, so that it is easier to
+			track down problematic update clients. [GL #3209]
+
+5836.	[bug]		Quote the dns64 prefix in error messages that complain
+			about problems with it, to avoid confusion with the
+			following dns64 ACLs. [GL #3210]
+
+5834.	[cleanup]	C99 variable-length arrays are difficult to use safely,
+			so avoid them except in test code. [GL #3201]
+
+5828.	[bug]		Replace single TCP write timer with per-TCP write
+			timers. [GL #3200]
+
+5824.	[bug]		Invalid dnssec-policy definitions were being accepted
+			where the defined keys did not cover both KSK and ZSK
+			roles for a given algorithm.  This is now checked for
+			and the dnssec-policy is rejected if both roles are
+			not present for all algorithms in use. [GL #3142]
+
+	--- 9.16.27 released ---
+
+5818.	[security]	A synchronous call to closehandle_cb() caused
+			isc__nm_process_sock_buffer() to be called recursively,
+			which in turn left TCP connections hanging in the
+			CLOSE_WAIT state blocking indefinitely when
+			out-of-order processing was disabled. (CVE-2022-0396)
+			[GL #3112]
+
+5817.	[security]	The rules for acceptance of records into the cache
+			have been tightened to prevent the possibility of
+			poisoning if forwarders send records outside
+			the configured bailiwick. (CVE-2021-25220) [GL #2950]
+
+5816.	[bug]		Make BIND compile with LibreSSL 3.5.0, as it was using
+			not very accurate pre-processor checks for using shims.
+			[GL #3172]
+
+5815.	[bug]		If an oversized key name of a specific length was used
+			in the text form of an HTTP or SVBC record, an INSIST
+			could be triggered when parsing it. [GL #3175]
+
+5814.	[bug]		The RecursClients statistics counter could underflow
+			in certain resolution scenarios. [GL #3147]
+
+5811.	[bug]		Reimplement the maximum and idle timeouts for outgoing
+			zone transfers. [GL #1897]
+
+5807.	[bug]		Add a TCP "write" timer, and time out writing
+			connections after the "tcp-idle-timeout" period
+			has elapsed. [GL #3132]
+
+5804.	[func]		Add a debug log message when starting and ending
+			the task exclusive mode. [GL #3137]
+
 	--- 9.16.26 released ---
 
 5801.	[bug]		Log "quota reached" message when hard quota

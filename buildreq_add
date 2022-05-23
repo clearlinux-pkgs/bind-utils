@@ -9,3 +9,6 @@ openssl-dev
 perl
 pypi(ply)
 readline-dev
+pypi-pytest
+# for testsuite:
+tzdata

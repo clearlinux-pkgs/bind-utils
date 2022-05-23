@@ -8,7 +8,6 @@ Configure miss: SSL_CTX_set_min_proto_version
 Configure miss: arc4random
 Configure miss: arc4random_uniform
 Configure miss: backtrace in -lexecinfo
-Configure miss: cpuset_setaffinity
 Configure miss: devpoll.h
 Configure miss: devpoll.h presence
 Configure miss: devpoll.h usability
@@ -17,7 +16,6 @@ Configure miss: file system DLZ driver
 Configure miss: kyua
 Configure miss: lmdb library
 Configure miss: net/if6.h
-Configure miss: processor_bind
 Configure miss: pthread_np.h
 Configure miss: pthread_set_name_np
 Configure miss: pthread_yield
@@ -33,21 +31,14 @@ Configure miss: readline
 Configure miss: readline
 Configure miss: smf_enable_instance in -lscf
 Configure miss: stub DLZ driver
-Configure miss: sys/cpuset.h
-Configure miss: sys/cpuset.h presence
-Configure miss: sys/cpuset.h usability
 Configure miss: sys/devpoll.h
 Configure miss: sys/devpoll.h presence
 Configure miss: sys/devpoll.h usability
-Configure miss: sys/procset.h
-Configure miss: sys/procset.h presence
-Configure miss: sys/procset.h usability
 Configure miss: sys/sysctl.h
 Configure miss: sysctlbyname
 Configure miss: w3m
 Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
 Configure miss: whether struct msghdr uses padding for alignment
-Configure miss: whether to emulate atomics with mutexes
 Configure miss: whether to enable FIPS mode in OpenSSL library
 Configure miss: whether to enable fuzzing mode
 Configure miss: whether to enable query trace logging
