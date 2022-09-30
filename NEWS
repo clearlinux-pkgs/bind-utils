@@ -1,3 +1,232 @@
+	--- 9.18.7 released ---
+
+5962.	[security]	Fix memory leak in EdDSA verify processing.
+			(CVE-2022-38178) [GL #3487]
+
+5960.	[security]	Fix serve-stale crash that could happen when
+			stale-answer-client-timeout was set to 0 and there was
+			a stale CNAME in the cache for an incoming query.
+			(CVE-2022-3080) [GL #3517]
+
+5959.	[security]	Fix memory leaks in the DH code when using OpenSSL 3.0.0
+			and later versions. The openssldh_compare(),
+			openssldh_paramcompare(), and openssldh_todns()
+			functions were affected. (CVE-2022-2906) [GL #3491]
+
+5958.	[security]	When an HTTP connection was reused to get
+			statistics from the stats channel, and zlib
+			compression was in use, each successive
+			response sent larger and larger blocks of memory,
+			potentially reading past the end of the allocated
+			buffer. (CVE-2022-2881) [GL #3493]
+
+5957.	[security]	Prevent excessive resource use while processing large
+			delegations. (CVE-2022-2795) [GL #3394]
+
+5956.	[func]		Make RRL code treat all QNAMEs that are subject to
+			wildcard processing within a given zone as the same
+			name. [GL #3459]
+
+5955.	[port]		The libxml2 library has deprecated the usage of
+			xmlInitThreads() and xmlCleanupThreads() functions. Use
+			xmlInitParser() and xmlCleanupParser() instead.
+			[GL #3518]
+
+5954.	[func]		Fallback to IDNA2003 processing in dig when IDNA2008
+			conversion fails. [GL #3485]
+
+5953.	[bug]		Fix a crash on shutdown in delete_trace_entry(). Add
+			mctx attach/detach pair to make sure that the memory
+			context used by a memory pool is not destroyed before
+			the memory pool itself. [GL #3515]
+
+5952.	[bug]		Use quotes around address strings in YAML output.
+			[GL #3511]
+
+5951.	[bug]		In some cases, the dnstap query_message field was
+			erroneously set when logging response messages.
+			[GL #3501]
+
+5948.	[bug]		Fix nsec3.c:dns_nsec3_activex() function, add a missing
+			dns_db_detachnode() call. [GL #3500]
+
+5947.	[func]		Change dnssec-policy to allow graceful transition from
+			an NSEC only zone to NSEC3. [GL #3486]
+
+5946.	[bug]		Fix statistics channel's handling of multiple HTTP
+			requests in a single connection which have non-empty
+			request bodies. [GL #3463]
+
+5945.	[bug]		If parsing /etc/bind.key failed, delv could assert
+			when trying to parse the built in trust anchors as
+			the parser hadn't been reset. [GL !6468]
+
+5944.	[bug]		Fix +http-plain-get and +http-plain-post options
+			support in dig. Thanks to Marco Davids at SIDN for
+			reporting the problem. [GL !6672]
+
+5942.	[bug]		Fix tkey.c:buildquery() function's error handling by
+			adding the missing cleanup code. [GL #3492]
+
+5941.	[func]		Zones with dnssec-policy now require dynamic DNS or
+			inline-siging to be configured explicitly. [GL #3381]
+
+5938.	[bug]		An integer type overflow could cause an assertion
+			failure when freeing memory. [GL #3483]
+
+5936.	[bug]		Don't enable serve-stale for lookups that error because
+			it is a duplicate query or a query that would be
+			dropped. [GL #2982]
+
+5935.	[bug]		Fix DiG lookup reference counting bug, which could
+			be observed in NSSEARCH mode. [GL #3478]
+
+	--- 9.18.6 released ---
+
+5934.	[func]		Improve fetches-per-zone fetch limit logging to log
+			the final allowed and spilled values of the fetch
+			counters before the counter object gets destroyed.
+			[GL #3461]
+
+5933.	[port]		Automatically disable RSASHA1 and NSEC3RSASHA1 in
+			named on Fedorda 33, Oracle Linux 9 and RHEL9 when
+			they are disabled by the security policy. [GL #3469]
+
+5932.	[bug]		Fix rndc dumpdb -expired and always include expired
+			RRsets, not just for RBTDB_VIRTUAL time window.
+			[GL #3462]
+
+5931.	[bug]		Fix DiG query error handling robustness in NSSEARCH
+			mode by making sure that udp_ready(), tcp_connected(),
+			and send_done() callbacks start the next query in chain
+			even if there is some kind of error with the previous
+			query. [GL #3419]
+
+5930.	[bug]		Fix DiG query retry and fail-over bug in UDP mode.
+			Also simplify the overall retry and fail-over logic to
+			make it behave predictably, and always respect the
+			documented +retry/+tries count set by a command-line
+			option (or use the default values of 2 or 3
+			respectively). [GL #3407]
+
+5929.	[bug]		The "max-zone-ttl" option in "dnssec-policy" was
+			not fully effective; it was used for timing key
+			rollovers but did not actually place an upper limit
+			on TTLs when loading a zone. This has been
+			corrected, and the documentation has been clarified
+			to indicate that the old "max-zone-ttl" zone option
+			is now ignored when "dnssec-policy" is in use.
+			[GL #2918]
+
+5927.	[bug]		A race was possible in dns_dispatch_connect()
+			that could trigger an assertion failure if two
+			threads called it near-simultaneously. [GL #3456]
+
+5926.	[func]		Handle transient TCP connect() EADDRINUSE failures
+			on FreeBSD (and possibly other BSDs) by trying three
+			times before giving up. [GL #3451]
+
+5925.	[bug]		With a forwarder configured for all queries, resolution
+			failures encountered during DS chasing could trigger
+			assertion failures due to a logic bug in
+			resume_dslookup() that caused it to call
+			dns_resolver_createfetch() with an invalid name.
+			[GL #3439]
+
+5924.	[func]		When it's necessary to use AXFR to respond to an
+			IXFR request, a message explaining the reason
+			is now logged at level info. [GL #2683]
+
+5923.	[bug]		Fix inheritance for dnssec-policy when checking for
+			inline-signing. [GL #3438]
+
+5922.	[bug]		Forwarding of UPDATE message could fail with the
+			introduction of netmgr. This has been fixed. [GL #3389]
+
+5921.	[test]		Convert system tests to use a default DNSKEY algorithm
+			where the test is not DNSKEY algorithm specific.
+			[GL #3440]
+
+	--- 9.18.5 released ---
+
+5917.	[bug]		Update ifconfig.sh script as is miscomputed interface
+			identifiers when destroying interfaces. [GL #3061]
+
+5916.	[bug]		When resolving a name, don't give up immediately if an
+			authoritative server returns FORMERR; try the other
+			servers first. [GL #3152]
+
+5915.	[bug]		Detect missing closing brace (}) and computational
+			overflows in $GENERATE directives. [GL #3429]
+
+5914.	[bug]		When synth-from-dnssec generated a response using
+			records from a higher zone, it could unexpectedly prove
+			non-existance of records in a subordinate grafted-on
+			namespace. [GL #3402]
+
+5911.	[bug]		Update HTTP listener settings on reconfiguration.
+			[GL #3415]
+
+5910.	[cleanup]	Move built-in dnssec-policies into the defaultconf.
+			These are now printed with 'named -C'. [GL !6467]
+
+5909.	[bug]		The server-side destination port was missing from dnstap
+			captures of client traffic. [GL #3309]
+
+5908.	[bug]		Fix race conditions in route_connected(). [GL #3401]
+
+5907.	[bug]		Fix a crash in dig NS search mode when one of the NS
+			server queries fail. [GL #3207]
+
+5905.	[bug]		When the TCP connection would be closed/reset between
+			the connect/accept and the read, the uv_read_start()
+			return value would be unexpected and cause an assertion
+			failure. [GL #3400]
+
+5904.	[func]		Changed dnssec-signzone -H default to 0 additional
+			NSEC3 iterations. [GL #3395]
+
+5903.	[bug]		When named checks that the OPCODE in a response matches
+			that of the request, if there is a mismatch named logs
+			an error.  Some of those error messages incorrectly
+			used RCODE instead of OPCODE to lookup the nemonic.
+			This has been corrected. [GL !6420]
+
+5901.	[bug]		When processing a catalog zone member zone make sure
+			that there is no configured pre-existing forward-only
+			forward zone with that name. [GL #2506]
+
+	--- 9.18.4 released ---
+
+5899.	[func]		Don't try to process DNSSEC-related and ZONEMD records
+			in catz. [GL #3380]
+
+5896.	[func]		Add some more dnssec-policy checks to detect weird
+			policies. [GL #1611]
+
+5895.	[test]		Add new set of unit test macros and move the unit
+			tests under single namespace in /tests/. [GL !6243]
+
+5893.	[func]		Add TLS session resumption support to the client-side
+			TLS code. [GL !6274]
+
+5891.	[func]		Key timing options for `dnssec-settime` and related
+			utilities now accept "UNSET" times as printed by
+			`dnssec-settime -p`. [GL #3361]
+
+5890.	[bug]		When the fetches-per-server quota was adjusted
+			because of an authoritative server timing out more
+			or less frequently, it was incorrectly set to 1
+			rather than the intended value.  This has been
+			fixed. [GL #3327]
+
+5888.	[bug]		Only write key files if the dnssec-policy keymgr has
+			changed the metadata. [GL #3302]
+
+5837.	[func]		Key timing options for `dnssec-keygen` and
+			`dnssec-settime` now accept times as printed by
+			`dnssec-settime -p`. [GL !2947]
+
 	--- 9.18.3 released ---
 
 5886.	[security]	Fix a crash in DNS-over-HTTPS (DoH) code caused by
