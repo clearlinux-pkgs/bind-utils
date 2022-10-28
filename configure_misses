@@ -34,6 +34,7 @@ Configure miss: pthread_yield_np
 Configure miss: py.test-3
 Configure miss: pytest-3
 Configure miss: python module: dns
+Configure miss: strnstr
 Configure miss: sys/devpoll.h
 Configure miss: sys/devpoll.h presence
 Configure miss: sys/devpoll.h usability

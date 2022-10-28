@@ -6,11 +6,11 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.18.7
-Release  : 119
-URL      : https://downloads.isc.org/isc/bind9/9.18.7/bind-9.18.7.tar.xz
-Source0  : https://downloads.isc.org/isc/bind9/9.18.7/bind-9.18.7.tar.xz
-Source1  : https://downloads.isc.org/isc/bind9/9.18.7/bind-9.18.7.tar.xz.asc
+Version  : 9.18.8
+Release  : 120
+URL      : https://downloads.isc.org/isc/bind9/9.18.8/bind-9.18.8.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.18.8/bind-9.18.8.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.18.8/bind-9.18.8.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause ISC MPL-2.0
@@ -102,15 +102,15 @@ man components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.18.7
-cd %{_builddir}/bind-9.18.7
+%setup -q -n bind-9.18.8
+cd %{_builddir}/bind-9.18.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1664888613
+export SOURCE_DATE_EPOCH=1666979402
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -129,7 +129,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1664888613
+export SOURCE_DATE_EPOCH=1666979402
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp %{_builddir}/bind-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/4fa8d983d44984c7a1d7bbca6971242b10155776 || :
@@ -413,19 +413,19 @@ rm -f %{buildroot}*/etc/bind.keys
 %defattr(-,root,root,-)
 /usr/lib64/bind/filter-a.so
 /usr/lib64/bind/filter-aaaa.so
-/usr/lib64/libbind9-9.18.7.so
+/usr/lib64/libbind9-9.18.8.so
 /usr/lib64/libbind9.so
-/usr/lib64/libdns-9.18.7.so
+/usr/lib64/libdns-9.18.8.so
 /usr/lib64/libdns.so
-/usr/lib64/libirs-9.18.7.so
+/usr/lib64/libirs-9.18.8.so
 /usr/lib64/libirs.so
-/usr/lib64/libisc-9.18.7.so
+/usr/lib64/libisc-9.18.8.so
 /usr/lib64/libisc.so
-/usr/lib64/libisccc-9.18.7.so
+/usr/lib64/libisccc-9.18.8.so
 /usr/lib64/libisccc.so
-/usr/lib64/libisccfg-9.18.7.so
+/usr/lib64/libisccfg-9.18.8.so
 /usr/lib64/libisccfg.so
-/usr/lib64/libns-9.18.7.so
+/usr/lib64/libns-9.18.8.so
 /usr/lib64/libns.so
 
 %files license
