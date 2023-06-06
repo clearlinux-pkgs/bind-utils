@@ -7,11 +7,11 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.18.13
-Release  : 123
-URL      : https://downloads.isc.org/isc/bind9/9.18.13/bind-9.18.13.tar.xz
-Source0  : https://downloads.isc.org/isc/bind9/9.18.13/bind-9.18.13.tar.xz
-Source1  : https://downloads.isc.org/isc/bind9/9.18.13/bind-9.18.13.tar.xz.asc
+Version  : 9.18.15
+Release  : 124
+URL      : https://downloads.isc.org/isc/bind9/9.18.15/bind-9.18.15.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.18.15/bind-9.18.15.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.18.15/bind-9.18.15.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause ISC MPL-2.0
@@ -108,20 +108,20 @@ man components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.18.13
-cd %{_builddir}/bind-9.18.13
+%setup -q -n bind-9.18.15
+cd %{_builddir}/bind-9.18.15
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680640287
+export SOURCE_DATE_EPOCH=1686077617
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure  --without-libxml2 \
 --with-libtool \
 --with-gssapi=krb5-config
@@ -135,7 +135,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1680640287
+export SOURCE_DATE_EPOCH=1686077617
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp %{_builddir}/bind-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/4fa8d983d44984c7a1d7bbca6971242b10155776 || :
@@ -301,7 +301,6 @@ rm -f %{buildroot}*/etc/bind.keys
 /usr/include/isc/eventclass.h
 /usr/include/isc/file.h
 /usr/include/isc/formatcheck.h
-/usr/include/isc/fsaccess.h
 /usr/include/isc/fuzz.h
 /usr/include/isc/glob.h
 /usr/include/isc/hash.h
@@ -418,19 +417,19 @@ rm -f %{buildroot}*/etc/bind.keys
 %defattr(-,root,root,-)
 /usr/lib64/bind/filter-a.so
 /usr/lib64/bind/filter-aaaa.so
-/usr/lib64/libbind9-9.18.13.so
+/usr/lib64/libbind9-9.18.15.so
 /usr/lib64/libbind9.so
-/usr/lib64/libdns-9.18.13.so
+/usr/lib64/libdns-9.18.15.so
 /usr/lib64/libdns.so
-/usr/lib64/libirs-9.18.13.so
+/usr/lib64/libirs-9.18.15.so
 /usr/lib64/libirs.so
-/usr/lib64/libisc-9.18.13.so
+/usr/lib64/libisc-9.18.15.so
 /usr/lib64/libisc.so
-/usr/lib64/libisccc-9.18.13.so
+/usr/lib64/libisccc-9.18.15.so
 /usr/lib64/libisccc.so
-/usr/lib64/libisccfg-9.18.13.so
+/usr/lib64/libisccfg-9.18.15.so
 /usr/lib64/libisccfg.so
-/usr/lib64/libns-9.18.13.so
+/usr/lib64/libns-9.18.15.so
 /usr/lib64/libns.so
 
 %files license
