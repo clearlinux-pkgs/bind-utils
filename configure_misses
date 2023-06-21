@@ -1,7 +1,4 @@
 Configure miss: SSL_CTX_set_min_proto_version
-Configure miss: devpoll.h
-Configure miss: devpoll.h presence
-Configure miss: devpoll.h usability
 Configure miss: extended malloc attributes
 Configure miss: gssapi_krb5.h
 Configure miss: gssapi_krb5.h presence
@@ -36,9 +33,6 @@ Configure miss: py.test-3
 Configure miss: pytest-3
 Configure miss: python module: dns
 Configure miss: strnstr
-Configure miss: sys/devpoll.h
-Configure miss: sys/devpoll.h presence
-Configure miss: sys/devpoll.h usability
 Configure miss: sys/sysctl.h
 Configure miss: sysctlbyname
 Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
