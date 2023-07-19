@@ -9,6 +9,5 @@ libmaxminddb.so.0
 libnghttp2.so.14
 libreadline.so.8
 libssl.so.3
-libtinfo.so.6
 libuv.so.1
 libz.so.1

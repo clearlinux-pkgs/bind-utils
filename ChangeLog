@@ -1,3 +1,45 @@
+	--- 9.18.17 released ---
+
+6206.	[bug]		Add shutdown checks in dns_catz_dbupdate_callback() to
+			avoid a race with dns_catz_shutdown_catzs(). [GL #4171]
+
+6205.	[bug]		Restore support to read legacy HMAC-MD5 K file pairs.
+			[GL #4154]
+
+6204.	[bug]		Use NS records for relaxed QNAME-minimization mode.
+			This reduces the number of queries named makes when
+			resolving, as it allows the non-existence of NS RRsets
+			at non-referral nodes to be cached in addition to the
+			referrals that are normally cached. [GL #3325]
+
+6200.	[bug]		Fix nslookup erroneously reporting a timeout when the
+			input is delayed. [GL #4044]
+
+6199.	[bug]		Improve HTTP Connection: header protocol conformance
+			in the statistics channel. [GL #4126]
+
+6198.	[func]		Remove the holes in the isc_result_t enum to compact
+			the isc_result tables. [GL #4149]
+
+6197.	[bug]		Fix a data race between the dns_zone and dns_catz
+			modules when registering/unregistering a database
+			update notification callback for a catalog zone.
+			[GL #4132]
+
+6196.	[cleanup]	Report "permission denied" instead of "unexpected error"
+			when trying to update a zone file on a read-only file
+			system. Thanks to Midnight Veil. [GL #4134]
+
+6193.	[bug]		Fix a catz db update notification callback registration
+			logic error, which could crash named when receiving an
+			AXFR update for a catalog zone while the previous update
+			process of the catalog zone was already running.
+			[GL #4136]
+
+6166.	[func]		Retry without DNS COOKIE on FORMERR if it appears that
+			the FORMERR was due to the presence of a DNS COOKIE
+			option. [GL #4049]
+
 	--- 9.18.16 released ---
 
 6192.	[security]	A query that prioritizes stale data over lookup
