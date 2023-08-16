@@ -7,14 +7,14 @@
 #
 %define keepstatic 1
 Name     : bind-utils
-Version  : 9.18.17
-Release  : 126
-URL      : https://downloads.isc.org/isc/bind9/9.18.17/bind-9.18.17.tar.xz
-Source0  : https://downloads.isc.org/isc/bind9/9.18.17/bind-9.18.17.tar.xz
-Source1  : https://downloads.isc.org/isc/bind9/9.18.17/bind-9.18.17.tar.xz.asc
+Version  : 9.18.18
+Release  : 127
+URL      : https://downloads.isc.org/isc/bind9/9.18.18/bind-9.18.18.tar.xz
+Source0  : https://downloads.isc.org/isc/bind9/9.18.18/bind-9.18.18.tar.xz
+Source1  : https://downloads.isc.org/isc/bind9/9.18.18/bind-9.18.18.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause ISC MPL-2.0
+License  : Apache-2.0 BSD-3-Clause ISC MPL-2.0
 Requires: bind-utils-bin = %{version}-%{release}
 Requires: bind-utils-lib = %{version}-%{release}
 Requires: bind-utils-license = %{version}-%{release}
@@ -108,15 +108,15 @@ man components for the bind-utils package.
 
 
 %prep
-%setup -q -n bind-9.18.17
-cd %{_builddir}/bind-9.18.17
+%setup -q -n bind-9.18.18
+cd %{_builddir}/bind-9.18.18
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689810214
+export SOURCE_DATE_EPOCH=1692207300
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -135,10 +135,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1689810214
+export SOURCE_DATE_EPOCH=1692207300
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bind-utils
 cp %{_builddir}/bind-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bind-utils/4fa8d983d44984c7a1d7bbca6971242b10155776 || :
+cp %{_builddir}/bind-%{version}/COPYRIGHT %{buildroot}/usr/share/package-licenses/bind-utils/99e1411b8c4ea09c7847a93fa9fcdc275f39bdc5 || :
 cp %{_builddir}/bind-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/bind-utils/4fa8d983d44984c7a1d7bbca6971242b10155776 || :
 %make_install
 ## Remove excluded files
@@ -416,24 +417,25 @@ rm -f %{buildroot}*/etc/bind.keys
 %defattr(-,root,root,-)
 /usr/lib64/bind/filter-a.so
 /usr/lib64/bind/filter-aaaa.so
-/usr/lib64/libbind9-9.18.17.so
+/usr/lib64/libbind9-9.18.18.so
 /usr/lib64/libbind9.so
-/usr/lib64/libdns-9.18.17.so
+/usr/lib64/libdns-9.18.18.so
 /usr/lib64/libdns.so
-/usr/lib64/libirs-9.18.17.so
+/usr/lib64/libirs-9.18.18.so
 /usr/lib64/libirs.so
-/usr/lib64/libisc-9.18.17.so
+/usr/lib64/libisc-9.18.18.so
 /usr/lib64/libisc.so
-/usr/lib64/libisccc-9.18.17.so
+/usr/lib64/libisccc-9.18.18.so
 /usr/lib64/libisccc.so
-/usr/lib64/libisccfg-9.18.17.so
+/usr/lib64/libisccfg-9.18.18.so
 /usr/lib64/libisccfg.so
-/usr/lib64/libns-9.18.17.so
+/usr/lib64/libns-9.18.18.so
 /usr/lib64/libns.so
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/bind-utils/4fa8d983d44984c7a1d7bbca6971242b10155776
+/usr/share/package-licenses/bind-utils/99e1411b8c4ea09c7847a93fa9fcdc275f39bdc5
 
 %files man
 %defattr(0644,root,root,0755)

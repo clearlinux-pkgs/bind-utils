@@ -1,3 +1,20 @@
+	--- 9.18.18 released ---
+
+6220.	[func]		Deprecate the 'dialup' and 'heartbeat-interval'
+			options. [GL #3700]
+
+6219.	[bug]		Ignore 'max-zone-ttl' on 'dnssec-policy insecure'.
+			[GL #4032]
+
+6215.	[protocol]	Return REFUSED to GSS-API TKEY requests if GSS-API
+			support is not configured. [GL #4225]
+
+6213.	[bug]		Mark a primary server as temporarily unreachable if the
+			TCP connection attempt times out. [GL #4215]
+
+6212.	[bug]		Don't process detach and close netmgr events when
+			the netmgr has been paused. [GL #4200]
+
 	--- 9.18.17 released ---
 
 6206.	[bug]		Add shutdown checks in dns_catz_dbupdate_callback() to
