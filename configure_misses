@@ -1,12 +1,9 @@
 Configure miss: SSL_CTX_set_min_proto_version
 Configure miss: extended malloc attributes
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gssapi_krb5.h
-Configure miss: gssapi_krb5.h presence
-Configure miss: gssapi_krb5.h usability
 Configure miss: jemalloc
 Configure miss: jemalloc/jemalloc.h
-Configure miss: jemalloc/jemalloc.h presence
-Configure miss: jemalloc/jemalloc.h usability
 Configure miss: json-c >= 0.11
 Configure miss: latexmk
 Configure miss: libedit
@@ -18,8 +15,6 @@ Configure miss: lmdb header in /opt/local
 Configure miss: lmdb header in /usr
 Configure miss: lmdb header in /usr/local
 Configure miss: malloc_np.h
-Configure miss: malloc_np.h presence
-Configure miss: malloc_np.h usability
 Configure miss: malloc_size
 Configure miss: net/if6.h
 Configure miss: perl module: Digest::HMAC
@@ -41,4 +36,5 @@ Configure miss: whether to enable FIPS mode in OpenSSL library
 Configure miss: whether to enable fuzzing mode
 Configure miss: whether to enable query trace logging
 Configure miss: whether to enable single-query trace logging
+Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: xelatex
