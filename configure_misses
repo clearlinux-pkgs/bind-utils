@@ -1,40 +1,80 @@
 Configure miss: SSL_CTX_set_min_proto_version
+Configure miss: SSL_CTX_set_min_proto_version
+Configure miss: extended malloc attributes
 Configure miss: extended malloc attributes
 Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gssapi_krb5.h
 Configure miss: gssapi_krb5.h
 Configure miss: jemalloc
+Configure miss: jemalloc
+Configure miss: jemalloc/jemalloc.h
 Configure miss: jemalloc/jemalloc.h
 Configure miss: json-c >= 0.11
+Configure miss: json-c >= 0.11
+Configure miss: latexmk
 Configure miss: latexmk
 Configure miss: libedit
+Configure miss: libedit
+Configure miss: libeditline
 Configure miss: libeditline
 Configure miss: library containing librpz_client_create
+Configure miss: library containing librpz_client_create
+Configure miss: lmdb
 Configure miss: lmdb
 Configure miss: lmdb header in /opt
+Configure miss: lmdb header in /opt
+Configure miss: lmdb header in /opt/local
 Configure miss: lmdb header in /opt/local
 Configure miss: lmdb header in /usr
+Configure miss: lmdb header in /usr
+Configure miss: lmdb header in /usr/local
 Configure miss: lmdb header in /usr/local
 Configure miss: malloc_np.h
+Configure miss: malloc_np.h
+Configure miss: malloc_size
 Configure miss: malloc_size
 Configure miss: net/if6.h
+Configure miss: net/if6.h
+Configure miss: perl module: Digest::HMAC
 Configure miss: perl module: Digest::HMAC
 Configure miss: perl module: Net::DNS
+Configure miss: perl module: Net::DNS
+Configure miss: perl module: Net::DNS::Nameserver
 Configure miss: perl module: Net::DNS::Nameserver
 Configure miss: pthread_np.h
+Configure miss: pthread_np.h
+Configure miss: pthread_set_name_np
 Configure miss: pthread_set_name_np
 Configure miss: pthread_yield
+Configure miss: pthread_yield
+Configure miss: pthread_yield_np
 Configure miss: pthread_yield_np
 Configure miss: py.test-3
+Configure miss: py.test-3
+Configure miss: pytest-3
 Configure miss: pytest-3
 Configure miss: python module: dns
+Configure miss: python module: dns
+Configure miss: strnstr
 Configure miss: strnstr
 Configure miss: sys/sysctl.h
+Configure miss: sys/sysctl.h
+Configure miss: sysctlbyname
 Configure miss: sysctlbyname
 Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
+Configure miss: whether -latomic is needed for 64-bit stdatomic.h functions
+Configure miss: whether struct msghdr uses padding for alignment
 Configure miss: whether struct msghdr uses padding for alignment
 Configure miss: whether to enable FIPS mode in OpenSSL library
+Configure miss: whether to enable FIPS mode in OpenSSL library
+Configure miss: whether to enable fuzzing mode
 Configure miss: whether to enable fuzzing mode
 Configure miss: whether to enable query trace logging
+Configure miss: whether to enable query trace logging
+Configure miss: whether to enable single-query trace logging
 Configure miss: whether to enable single-query trace logging
 Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: xelatex
 Configure miss: xelatex
