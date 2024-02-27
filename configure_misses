@@ -36,12 +36,6 @@ Configure miss: malloc_size
 Configure miss: malloc_size
 Configure miss: net/if6.h
 Configure miss: net/if6.h
-Configure miss: perl module: Digest::HMAC
-Configure miss: perl module: Digest::HMAC
-Configure miss: perl module: Net::DNS
-Configure miss: perl module: Net::DNS
-Configure miss: perl module: Net::DNS::Nameserver
-Configure miss: perl module: Net::DNS::Nameserver
 Configure miss: pthread_np.h
 Configure miss: pthread_np.h
 Configure miss: pthread_set_name_np
@@ -54,8 +48,6 @@ Configure miss: py.test-3
 Configure miss: py.test-3
 Configure miss: pytest-3
 Configure miss: pytest-3
-Configure miss: python module: dns
-Configure miss: python module: dns
 Configure miss: strnstr
 Configure miss: strnstr
 Configure miss: sys/sysctl.h
