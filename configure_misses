@@ -1,5 +1,9 @@
+Configure miss: FIPS_mode
+Configure miss: FIPS_mode
 Configure miss: SSL_CTX_set_min_proto_version
 Configure miss: SSL_CTX_set_min_proto_version
+Configure miss: dtrace
+Configure miss: dtrace
 Configure miss: extended malloc attributes
 Configure miss: extended malloc attributes
 Configure miss: gcc options needed to detect all undeclared functions
@@ -12,14 +16,10 @@ Configure miss: jemalloc/jemalloc.h
 Configure miss: jemalloc/jemalloc.h
 Configure miss: json-c >= 0.11
 Configure miss: json-c >= 0.11
-Configure miss: latexmk
-Configure miss: latexmk
 Configure miss: libedit
 Configure miss: libedit
 Configure miss: libeditline
 Configure miss: libeditline
-Configure miss: library containing librpz_client_create
-Configure miss: library containing librpz_client_create
 Configure miss: lmdb
 Configure miss: lmdb
 Configure miss: lmdb header in /opt
@@ -50,6 +50,8 @@ Configure miss: pytest-3
 Configure miss: pytest-3
 Configure miss: strnstr
 Configure miss: strnstr
+Configure miss: sys/sdt.h
+Configure miss: sys/sdt.h
 Configure miss: sys/sysctl.h
 Configure miss: sys/sysctl.h
 Configure miss: sysctlbyname
@@ -60,6 +62,8 @@ Configure miss: whether struct msghdr uses padding for alignment
 Configure miss: whether struct msghdr uses padding for alignment
 Configure miss: whether to enable FIPS mode in OpenSSL library
 Configure miss: whether to enable FIPS mode in OpenSSL library
+Configure miss: whether to enable User Statically Defined Tracing support (default is auto)
+Configure miss: whether to enable User Statically Defined Tracing support (default is auto)
 Configure miss: whether to enable fuzzing mode
 Configure miss: whether to enable fuzzing mode
 Configure miss: whether to enable query trace logging
@@ -68,5 +72,3 @@ Configure miss: whether to enable single-query trace logging
 Configure miss: whether to enable single-query trace logging
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
-Configure miss: xelatex
-Configure miss: xelatex
