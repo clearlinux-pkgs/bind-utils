@@ -1,5 +1,7 @@
 Configure miss: FIPS_mode
 Configure miss: FIPS_mode
+Configure miss: PTHREAD_MUTEX_ADAPTIVE_NP
+Configure miss: PTHREAD_MUTEX_ADAPTIVE_NP
 Configure miss: SSL_CTX_set_min_proto_version
 Configure miss: SSL_CTX_set_min_proto_version
 Configure miss: dtrace
