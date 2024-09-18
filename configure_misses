@@ -4,6 +4,8 @@ Configure miss: PTHREAD_MUTEX_ADAPTIVE_NP
 Configure miss: PTHREAD_MUTEX_ADAPTIVE_NP
 Configure miss: SSL_CTX_set_min_proto_version
 Configure miss: SSL_CTX_set_min_proto_version
+Configure miss: cpuset_getaffinity
+Configure miss: cpuset_getaffinity
 Configure miss: dtrace
 Configure miss: dtrace
 Configure miss: extended malloc attributes
@@ -34,8 +36,6 @@ Configure miss: lmdb header in /usr/local
 Configure miss: lmdb header in /usr/local
 Configure miss: malloc_np.h
 Configure miss: malloc_np.h
-Configure miss: malloc_size
-Configure miss: malloc_size
 Configure miss: net/if6.h
 Configure miss: net/if6.h
 Configure miss: pthread_np.h
@@ -52,6 +52,8 @@ Configure miss: pytest-3
 Configure miss: pytest-3
 Configure miss: strnstr
 Configure miss: strnstr
+Configure miss: sys/cpuset.h
+Configure miss: sys/cpuset.h
 Configure miss: sys/sdt.h
 Configure miss: sys/sdt.h
 Configure miss: sys/sysctl.h
