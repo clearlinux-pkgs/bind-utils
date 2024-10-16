@@ -1,4 +1,1 @@
-Public key has changed:
-            old key: 182E23579462EFAA
-            new key: 510A642A06C52CEC
-this is a critical security error, quitting...
+Compiler:  /builddir/build/BUILDROOT/bind-utils-9.20.3-135.x86_64-v3/usr/lib64/libisc.so: ELF section name out of range
